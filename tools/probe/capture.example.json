@@ -1,0 +1,20 @@
+{
+  "_comment": "抓包注入模板。所有值必须由真实客户端运行时提供（Frida hook / tcpdump / mitm），本文件不提供任何臆造值。",
+  "_how_to_fill": {
+    "cmd_id": "见 README：hook CSMallBuyReq 构造点或 requestCallback 前后的 cmd_id (@0x15f9c5cc)",
+    "seq_id": "同上，seq_id (@0x15f9c5c5)，通常递增",
+    "signature_hex": "TSS 签名字节，来自 UDFMGameTss::SendTssData @0x5c32655 入参或 TssSDKOnRecvSignature @0x4d7c3de",
+    "session_key_hex": "会话密钥，若网关在 TLS 内再加密则需要；从 Frida dump",
+    "device_fingerprint": "qimei/oaid 等设备指纹，TSS 风控强相关",
+    "uin": "游戏账号 uid"
+  },
+  "cmd_id": null,
+  "seq_id": null,
+  "signature_hex": null,
+  "seed_hex": null,
+  "session_key_hex": null,
+  "device_fingerprint": null,
+  "uin": null,
+  "_captured_from": null,
+  "_captured_at": null
+}

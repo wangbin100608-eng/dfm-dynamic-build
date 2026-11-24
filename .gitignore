@@ -1,0 +1,21 @@
+# 大体积产物不入库
+apk/*.apk
+build/
+*.apk
+*.so
+*.dex
+*.jar
+!tools/apktool.jar
+tools/jadx.zip
+*.zip
+
+# 运行时缓存
+__pycache__/
+*.pyc
+.env
+logs/
+reports/capture/
+*.log
+
+# 系统
+.DS_Store
