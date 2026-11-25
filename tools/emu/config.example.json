@@ -1,0 +1,20 @@
+{
+  "_comment": "Unicorn 动态模拟配置。偏移均为 libUE4.so 文件偏移，来自静态逆向报告。",
+  "so": "/root/dfm_dynamic_build/reports/libUE4.so",
+  "base": "0x100000000",
+  "count": 2000,
+  "functions": {
+    "SendTssData": "0x5c32655",
+    "TssSDKOnRecvSignature": "0x4d7c3de",
+    "cs_gateway_cgi_info": "0x15f9c476",
+    "requestCallback_string": "0x15f9c594",
+    "cmd_id_string": "0x15f9c5cc",
+    "CSMallBuyReq_name": "0x5b6cd50",
+    "CSMallBuyRes_name": "0x5abd4ec",
+    "CSGetCurrencyReq_name": "0x57eebf3"
+  },
+  "stubs": {
+    "_comment": "外部函数 stub：地址→返回值。模拟遇到 BL 到这些地址时直接返回指定值。",
+    "example": "0xdeadbeef: 0"
+  }
+}

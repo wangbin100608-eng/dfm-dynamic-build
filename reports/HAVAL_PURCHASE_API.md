@@ -16,7 +16,9 @@
 | `raw@0x5bff70a` | `ReinitializeInstances`（可读） | 乱码 | raw 本身就是明文 |
 | `pb.CS` 出现次数 | 911 次 | 0 次 | 明文直接提取即可 |
 
-**结论**：当前 APK 的 so 字符串是明文，直接检索 raw 即可；XOR 方向在历史报告里写反了。已确认无 XOR 编码的 protobuf 名/字段残留。
+**结论**：当前 APK 的 so 字符串是明文，直接检索 raw 即可。
+
+2026-11-25 在服务器上用确定性方法复核（对每个词计算 XOR 0x10 编码后在 355MB so 中精确计数）：`cmd_id`(明文3/XOR0)、`goods_id`(2/0)、`buy_price`(2/0)、`CSMallBuyReq`(1/0)、`currency_type`(3/0)、`bullet_gid`(1/0) —— XOR 编码全部 0 次。`Buy~ydyq|yju` XOR 0x10 = `Reinitialize` 只是 XOR 自反造成的巧合，不代表系统性混淆。已确认无 XOR 编码的 protobuf 名/字段残留。
 
 ---
 
