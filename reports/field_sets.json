@@ -1,0 +1,207 @@
+{
+  "0xc4d3520": {
+    "label": "\u9650\u8d2d/\u8d2d\u4e70 (curr_buy_limit...)",
+    "fields": [
+      {
+        "name": "curr_buy_limit",
+        "struct_off": "0x30",
+        "code_addr": "0xc4d3544",
+        "inferred_field_no": 1
+      },
+      {
+        "name": "next_period_start",
+        "struct_off": "0x38",
+        "code_addr": "0xc4d3564",
+        "inferred_field_no": 2
+      },
+      {
+        "name": "limit_type",
+        "struct_off": "0x3c",
+        "code_addr": "0xc4d3584",
+        "inferred_field_no": 3
+      },
+      {
+        "name": "buy_num",
+        "struct_off": "0x48",
+        "code_addr": "0xc4d35a8",
+        "inferred_field_no": 5
+      },
+      {
+        "name": "level",
+        "struct_off": "0x40",
+        "code_addr": "0xc4d35f4",
+        "inferred_field_no": 4
+      },
+      {
+        "name": "exp",
+        "struct_off": "0x50",
+        "code_addr": "0xc4d3614",
+        "inferred_field_no": 7
+      },
+      {
+        "name": "next_level_exp",
+        "struct_off": "0x4c",
+        "code_addr": "0xc4d3634",
+        "inferred_field_no": 6
+      },
+      {
+        "name": "\\J]FNC/\\Z__@][/[@[NCpI]NL[Z]J/[@[NCpKJN[G/CJYJCZ",
+        "struct_off": "0x58",
+        "code_addr": "0xc4d3654",
+        "inferred_field_no": 8
+      },
+      {
+        "name": "total_exp",
+        "struct_off": "0x68",
+        "code_addr": "0xc4d3674",
+        "inferred_field_no": 9
+      },
+      {
+        "name": "last_update_time",
+        "struct_off": null,
+        "code_addr": "0xc4d3694"
+      }
+    ]
+  },
+  "0xc4f6800": {
+    "label": "\u8ba2\u5355\u8d2d\u4e70 (currency,price...)",
+    "fields": [
+      {
+        "name": "_]@_pFK/\\@][pLCN\\\\p@]KJ]/C@NKp[FBJ/@CKpYF_pCJYJC",
+        "struct_off": "0x48",
+        "code_addr": "0xc4f6878",
+        "inferred_field_no": 4
+      },
+      {
+        "name": "currency",
+        "struct_off": "0x40",
+        "code_addr": "0xc4f6898",
+        "inferred_field_no": 3
+      },
+      {
+        "name": "price",
+        "struct_off": "0x50",
+        "code_addr": "0xc4f68b8",
+        "inferred_field_no": 5
+      },
+      {
+        "name": "buy_num",
+        "struct_off": "0x58",
+        "code_addr": "0xc4f68d8",
+        "inferred_field_no": 6
+      },
+      {
+        "name": "to_pos",
+        "struct_off": "0x60",
+        "code_addr": "0xc4f68f8",
+        "inferred_field_no": 7
+      },
+      {
+        "name": "order_id",
+        "struct_off": "0x68",
+        "code_addr": "0xc4f6918",
+        "inferred_field_no": 8
+      },
+      {
+        "name": "durability",
+        "struct_off": "0x30",
+        "code_addr": "0xc4f6938",
+        "inferred_field_no": 2
+      },
+      {
+        "name": "assemble_info",
+        "struct_off": "0x28",
+        "code_addr": "0xc4f6968",
+        "inferred_field_no": 1
+      }
+    ]
+  },
+  "0xc514000": {
+    "label": "\u4ea4\u6613\u5b9a\u4ef7 (buy_currency_id...)",
+    "fields": [
+      {
+        "name": "_]@_pFK/\\@][pLCN\\\\p@]KJ]/C@NKp[FBJ/@CKpYF_pCJYJC",
+        "struct_off": "0x30",
+        "code_addr": "0xc51406c",
+        "inferred_field_no": 2
+      },
+      {
+        "name": "show_prop_id",
+        "struct_off": "0x98",
+        "code_addr": "0xc51408c",
+        "inferred_field_no": 8
+      },
+      {
+        "name": "buy_currency_id",
+        "struct_off": "0x38",
+        "code_addr": "0xc5140ac",
+        "inferred_field_no": 3
+      },
+      {
+        "name": "sell_currency_id",
+        "struct_off": "0x40",
+        "code_addr": "0xc5140cc",
+        "inferred_field_no": 4
+      },
+      {
+        "name": "guide_price",
+        "struct_off": "0x48",
+        "code_addr": "0xc5140ec",
+        "inferred_field_no": 5
+      },
+      {
+        "name": "price_range_begin",
+        "struct_off": "0x50",
+        "code_addr": "0xc51410c",
+        "inferred_field_no": 6
+      },
+      {
+        "name": "price_range_end",
+        "struct_off": "0x58",
+        "code_addr": "0xc51412c",
+        "inferred_field_no": 7
+      },
+      {
+        "name": "price_step",
+        "struct_off": "0x18",
+        "code_addr": "0xc51414c",
+        "inferred_field_no": 1
+      },
+      {
+        "name": "sale_lists",
+        "struct_off": null,
+        "code_addr": "0xc51417c"
+      }
+    ]
+  },
+  "0xc506200": {
+    "label": "\u5f39\u836f\u64cd\u4f5c (bullet_gid...)",
+    "fields": [
+      {
+        "name": "op_type",
+        "struct_off": null,
+        "code_addr": "0xc506224"
+      },
+      {
+        "name": "bullet_gid",
+        "struct_off": null,
+        "code_addr": "0xc50628c"
+      },
+      {
+        "name": "bullet_op_num",
+        "struct_off": null,
+        "code_addr": "0xc5062c0"
+      },
+      {
+        "name": "target_gun_rec_id",
+        "struct_off": null,
+        "code_addr": "0xc5062f4"
+      },
+      {
+        "name": "target_gun_rec_gid",
+        "struct_off": null,
+        "code_addr": "0xc506328"
+      }
+    ]
+  }
+}
