@@ -384,6 +384,16 @@ python3 tools/emu/emu_native_trace.py \
 
 本仓库仅用于**个人安全研究与逆向工程学习**。请勿将产物用于任何违反游戏服务条款、破坏线上服务或侵害他人权益的行为。所有接口调用应控制在研究必要的最小化范围内。
 
+## 12. Android x86_64 无 KVM / 无 GPU 环境专项（本次新增）
+
+在「无 KVM、无物理 GPU、Docker + Redroid + SwiftShader」环境下的完整 5 任务审计，报告见 [`docs/env-audit/00_总报告.md`](docs/env-audit/00_总报告.md)，含：
+
+- 宿主机环境 / APK ABI / 原生 x86_64 基准 / Native Bridge 兼容性 / 30 分钟稳定性 五份报告
+- 可复现部署配置、完整测试日志、推荐架构与未解决问题
+- 关键证据：patched 转译器的 11 字节 NOP patch 导致 `Undefined instruction 0x5ea1b801` 死循环（三实例因果闭环验证）
+
+**核心结论**：平台层（Binder/ashmem/SwiftShader/EGL）稳定；目标 APP 纯 arm64-v8a（90 个 so，无 x86_64），在 x86_64 + Native Bridge 上无法运行——原生转译器 SIGILL 崩溃、patched 转译器死循环。运行该游戏需 root arm64 真机。
+
 ---
 
-*生成时间：2026-11-24 · 最后更新：2026-11-28（新增 §9 反编译实证、§10 Unicorn 动态反编译、XOR 挖矿、工具修复）· 目标版本：国服官服 1.201.1035.13 / 1.201.37119.49 · 编译服务器：Ubuntu 26.10 (Vultr)*
+*生成时间：2026-11-24 · 最后更新：2026-11-28（新增 §9 反编译实证、§10 Unicorn 动态反编译、§12 环境专项审计）· 目标版本：国服官服 1.201.1035.13 / 1.201.37119.49 · 编译服务器：Ubuntu 26.10 (Vultr)*
