@@ -1,3 +1,137 @@
+# protobuf 消息字典 — 阶段2扩充（只追加，旧25条结论保留于下方原始区）
+# 生成时间(UTC): 2026-11-28T13:49:18Z
+# 数据源: libUE4.so 561MB，tools/emu/harvest_pb_messages.py 全文件 XOR-0x10 解码扫描
+# 可信度: medium = XOR-0x10 解码命中完整 pb.<Message> NUL 终止字符串（字节级可逆验证）；
+#        low = pb.<Message>.<field> 名称拼接，字段归属为字符串共现推断，字段号未知；
+#        high = 将来由真机 DescriptorPool 导出的字段号（本文件当前不含 high 字段号）。
+# 来源格式: so@0x<文件偏移>/XOR-0x10；偏移即 XOR 编码串起始文件地址。
+
+## 新增：购买/货币/价格/交易核心消息（medium）
+pb.CSMallBuyReq	so@0x1a24a2f/XOR-0x10	medium
+pb.CSMallBuyRes	so@0x247a0b4/XOR-0x10	medium
+pb.CSMallBatchBuyReq	so@0x1e63dc7/XOR-0x10	medium
+pb.CSMallBatchBuyRes	so@0x18eb254/XOR-0x10	medium
+pb.CSMallGetPricesReq	so@0x17b63d4/XOR-0x10	medium
+pb.CSMallGetPricesRes	so@0x18eb269/XOR-0x10	medium
+pb.CSMallQueryPriceReq	so@0x2824b68/XOR-0x10	medium
+pb.CSMallQueryPriceRes	so@0x1effeaa/XOR-0x10	medium
+pb.CSMallGetGoodsReq	so@0x22088ba/XOR-0x10	medium
+pb.CSMallGetGoodsRes	so@0x1718285/XOR-0x10	medium
+pb.CSMallGetBuyGoodsReq	so@0x1c9161d/XOR-0x10	medium
+pb.CSMallGetBuyGoodsRes	so@0x203684e/XOR-0x10	medium
+pb.CSMallGetPlayerDailyLimitGoodsReq	so@0x1b5af9c/XOR-0x10	medium
+pb.CSMallGetPlayerDailyLimitGoodsRes	so@0x1effedc/XOR-0x10	medium
+pb.CSMallMysteryShopBuyReq	so@0x23dbcf4/XOR-0x10	medium
+pb.CSMallMysteryShopBuyRes	so@0x216bcbc/XOR-0x10	medium
+pb.CSMallSellReq	so@0x15df777/XOR-0x10	medium
+pb.CSMallSellRes	so@0x1d2cce9/XOR-0x10	medium
+pb.CSGetCurrencyReq	so@0x2479f2f/XOR-0x10	medium
+pb.CSGetCurrencyRes	so@0x15df6d2/XOR-0x10	medium
+pb.CSCurrencyChangeNtf	so@0x1d2cb8a/XOR-0x10	medium
+pb.CSCurrencyExchangeReq	so@0x23dbab2/XOR-0x10	medium
+pb.CSCurrencyExchangeRes	so@0x1effd6d/XOR-0x10	medium
+pb.CSGetExchangeInfoReq	so@0x2036658/XOR-0x10	medium
+pb.CSGetExchangeInfoRes	so@0x1dc6cf9/XOR-0x10	medium
+pb.CSMarketBuyTReq	so@0x25152e1/XOR-0x10	medium
+pb.CSMarketBuyTRes	so@0x167aa9b/XOR-0x10	medium
+pb.CSMarketBatchBuyReq	so@0x1f9bc74/XOR-0x10	medium
+pb.CSMarketBatchBuyRes	so@0x2036866/XOR-0x10	medium
+pb.CSMarketGetGameItemSellPriceReq	so@0x1bf73a1/XOR-0x10	medium
+pb.CSMarketGetGameItemSellPriceRes	so@0x1f9bc8b/XOR-0x10	medium
+pb.CSMarketGetSaleListReq	so@0x216bcd7/XOR-0x10	medium
+pb.CSMarketGetSaleListRes	so@0x2824b9d/XOR-0x10	medium
+pb.CSMarketSellReq	so@0x1b5b000/XOR-0x10	medium
+pb.CSMarketSellRes	so@0x25b127d/XOR-0x10	medium
+pb.CSMarketOrder	so@0x23dbd69/XOR-0x10	medium
+pb.CSMarketOrderChangeNtf	so@0x17182d7/XOR-0x10	medium
+pb.CSMarketPreBuyReq	so@0x1c9165d/XOR-0x10	medium
+pb.CSMarketPreBuyRes	so@0x167aacb/XOR-0x10	medium
+pb.CSAuctionBuyTReq	so@0x216b87c/XOR-0x10	medium
+pb.CSAuctionBuyTRes	so@0x167a7a1/XOR-0x10	medium
+pb.CSAuctionBatchBuyReq	so@0x2036521/XOR-0x10	medium
+pb.CSAuctionBatchBuyRes	so@0x1c9134e/XOR-0x10	medium
+pb.CSAuctionGetGameItemSellPriceReq	so@0x1dc6bc6/XOR-0x10	medium
+pb.CSAuctionGetGameItemSellPriceRes	so@0x198809c/XOR-0x10	medium
+pb.CSAuctionOrder	so@0x22a5179/XOR-0x10	medium
+pb.CSAuctionOrderChangeNtf	so@0x184ff24/XOR-0x10	medium
+pb.CSBuyGoodsReq	so@0x1b5b12d/XOR-0x10	medium
+pb.CSBuyGoodsRes	so@0x25b1300/XOR-0x10	medium
+pb.CSCheapBuyReq	so@0x26ed6f4/XOR-0x10	medium
+pb.CSCheapBuyRes	so@0x1bf7634/XOR-0x10	medium
+pb.CSShopBuyReq	so@0x1f9c029/XOR-0x10	medium
+pb.CSShopBuyRes	so@0x278b1d3/XOR-0x10	medium
+pb.CSShopGetBuyRecordReq	so@0x2824fd1/XOR-0x10	medium
+pb.CSShopGetBuyRecordRes	so@0x22a5833/XOR-0x10	medium
+pb.CSActivityHaavkSiteShopBuyReq	so@0x167a6ea/XOR-0x10	medium
+pb.CSActivityGetCurrencyReq	so@0x22083da/XOR-0x10	medium
+pb.CSActivityGetCurrencyRes	so@0x2036316/XOR-0x10	medium
+pb.CSDepositOperateBulletReq	so@0x20d121b/XOR-0x10	medium
+pb.CSDepositOperateBulletRes	so@0x167a8d6/XOR-0x10	medium
+pb.CSRollDepositOperateBulletReq	so@0x1d2d015/XOR-0x10	medium
+pb.CSRollDepositOperateBulletRes	so@0x1ac17e9/XOR-0x10	medium
+pb.CSWAssemblyDepositPropUpdateReq	so@0x2036d9d/XOR-0x10	medium
+pb.CSWAssemblyDepositPropUpdateRes	so@0x26eda22/XOR-0x10	medium
+pb.CSTSSQueryPlayerCreditScoreReq	so@0x1e64366/XOR-0x10	medium
+pb.CSTSSQueryPlayerCreditScoreRes	so@0x1f9c3b4/XOR-0x10	medium
+pb.CSTSSPlayerQueryScnLimitReq	so@0x22a59bb/XOR-0x10	medium
+pb.CSTSSPlayerQueryScnLimitRes	so@0x15dfd9a/XOR-0x10	medium
+pb.CurrencyInfo	so@0x1a240f0/XOR-0x10	medium
+pb.CurrencyExchangeInfo	so@0x1dc68ca/XOR-0x10	medium
+pb.CurrencyLimitInfo	so@0x2036670/XOR-0x10	medium
+pb.ClientGwalletInfo	so@0x1c91024/XOR-0x10	medium
+pb.BuyGoodsInfo	so@0x216c17e/XOR-0x10	medium
+pb.PropBuyInfo	so@0x247a32a/XOR-0x10	medium
+pb.GuideBuyPropInfo	so@0x1a24d0b/XOR-0x10	medium
+pb.MallPropInfo	so@0x1dc68e2/XOR-0x10	medium
+pb.MallBuyFlow	so@0x26edb1e/XOR-0x10	medium
+pb.MarketBuyPropFlow	so@0x1f0051c/XOR-0x10	medium
+pb.MarketSellPropFlow	so@0x1a25284/XOR-0x10	medium
+pb.MarketSoldFlow	so@0x216c60e/XOR-0x10	medium
+pb.MarketWithdrawFlow	so@0x1dc7494/XOR-0x10	medium
+pb.MarketShadowPriceChangeFlow	so@0x1b5b9a5/XOR-0x10	medium
+pb.MarketGuidePriceChangeFlow	so@0x1f9c5e9/XOR-0x10	medium
+pb.AuctionBuyPropFlow	so@0x18eb7cf/XOR-0x10	medium
+pb.AuctionSellPropFlow	so@0x1a25186/XOR-0x10	medium
+pb.AuctionGuidePriceChangeFlow	so@0x2825393/XOR-0x10	medium
+pb.NewShopBuyFlow	so@0x1ac1acd/XOR-0x10	medium
+pb.ShopBuyFlow	so@0x278b52b/XOR-0x10	medium
+pb.MidasPayFlow	so@0x1e6450c/XOR-0x10	medium
+pb.SecPaymentFlow	so@0x1b5ba1e/XOR-0x10	medium
+pb.DynamicGuidePriceCalcFlow	so@0x25b1aee/XOR-0x10	medium
+pb.DynamicPriceSyncFlow	so@0x247a9ec/XOR-0x10	medium
+pb.DynamicPriceReleaseFlow	so@0x1f9c6d0/XOR-0x10	medium
+pb.PresetPriceFluctuationFlow	so@0x18508ca/XOR-0x10	medium
+pb.SecurityCompensatePriceFlow	so@0x17b6b2d/XOR-0x10	medium
+pb.RollPayTicketInfo	so@0x1bf766c/XOR-0x10	medium
+pb.RollPayTicketOperateFlow	so@0x1d2d559/XOR-0x10	medium
+pb.PullOffOrderInfo	so@0x1f9bcae/XOR-0x10	medium
+pb.PropPrice	so@0x1a24110/XOR-0x10	medium
+pb.PropGuidePrice	so@0x23414d1/XOR-0x10	medium
+pb.ItemLimitInfo	so@0x22a584c/XOR-0x10	medium
+pb.EnterItemPriceLimitInfo	so@0x19888c6/XOR-0x10	medium
+
+## 新增：字段名归属证据（low；字段名存在性 medium，归属未证实）
+pb.ActThemeSOCShopItem.cost_desc	so@0x2652df9/XOR-0x10	low
+pb.ActivityCurrencyJumpInfo.desc	so@0x15df2a3/XOR-0x10	low
+pb.CSActivityHaavkSiteHackOptionReducePriceReq.hack_option_id	so@0x26ecfe7/XOR-0x10	low
+pb.CSActivityHaavkSiteHackOptionReducePriceRes.code	so@0x220855b/XOR-0x10	low
+pb.CSActivityHaavkSiteHackOptionReducePriceRes.tips	so@0x2479d29/XOR-0x10	low
+pb.CSActivityHaavkSiteShopBuyReq.shop_item_id	so@0x1987fca/XOR-0x10	low
+pb.CSCheapBuyRes.face_verify_url	so@0x278af39/XOR-0x10	low
+pb.CSCheapBuyRes.security_verify_url	so@0x26535fc/XOR-0x10	low
+pb.CSHopeExecInstructionNtf.trace_id	so@0x278acbd/XOR-0x10	low
+pb.CSHopeVerifyCertificationReq.game_id	so@0x1e63d32/XOR-0x10	low
+pb.CSHopeVerifyCertificationRes.trace_id	so@0x265339d/XOR-0x10	low
+pb.CSSerialCheapBuyRes.face_verify_url	so@0x1bf7645/XOR-0x10	low
+pb.CSSerialCheapBuyRes.security_verify_url	so@0x17b668f/XOR-0x10	low
+pb.HaavkSiteShopItemInfo.image	so@0x17b5e88/XOR-0x10	low
+pb.HaavkSiteShopItemInfo.item_desc	so@0x2652f66/XOR-0x10	low
+pb.HaavkSiteShopItemInfo.item_name	so@0x1effb47/XOR-0x10	low
+pb.HaavkSiteShopItemInfo.shop_item_id	so@0x2514e64/XOR-0x10	low
+pb.LiveGetOneClickLiveInfo.small_title	so@0x23dbbca/XOR-0x10	low
+pb.LotteryGetCurrencyInfo.get_currency_name	so@0x1d2c7e7/XOR-0x10	low
+
+## 原始25条（阶段1，保留不改）
 pb.CollectionConsumeTicketsShowInfo
 pb.cpp
 pb.CSGatewayKickPlayerNtf

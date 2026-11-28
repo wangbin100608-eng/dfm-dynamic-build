@@ -46,7 +46,10 @@
       "mall_prices": "0x5b3358d"
     },
     "historical_fields_not_present_in_current_so": [
-      "buy_item_id", "buy_currency_itemid", "equip_item_id", "bullet_id"
+      "buy_item_id",
+      "buy_currency_itemid",
+      "equip_item_id",
+      "bullet_id"
     ]
   },
   "gateway": {
@@ -62,21 +65,29 @@
         "kind": "length",
         "size": 4,
         "endian": "little",
-        "covers": "rest"
+        "covers": "rest",
+        "_source": "local_calculation",
+        "confidence": "medium"
       },
       {
         "id": "cmd",
         "kind": "int",
         "size": 4,
         "endian": "little",
-        "source": "session.cmd_id"
+        "source": "session.cmd_id",
+        "_source": "capture_runtime",
+        "confidence": "unknown",
+        "runtime_required": true
       },
       {
         "id": "seq",
         "kind": "int",
         "size": 4,
         "endian": "little",
-        "source": "session.seq_id"
+        "source": "session.seq_id",
+        "_source": "capture_runtime",
+        "confidence": "unknown",
+        "runtime_required": true
       },
       {
         "id": "signature",
@@ -84,12 +95,17 @@
         "source": "session.signature_hex",
         "hex": true,
         "enabled": false,
-        "_comment": "默认关闭；确认签名在帧中的位置/长度后启用，并由 TSS 运行时注入。"
+        "_comment": "默认关闭；确认签名在帧中的位置/长度后启用，并由 TSS 运行时注入。",
+        "_source": "capture_runtime",
+        "confidence": "unknown",
+        "runtime_required": true
       },
       {
         "id": "body",
         "kind": "bytes",
-        "source": "@body"
+        "source": "@body",
+        "_source": "local_protobuf_builder",
+        "confidence": "high"
       }
     ]
   },
@@ -115,50 +131,70 @@
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "high",
-          "evidence": "goods_id@0x5e3462d,0x15f9d3a4 (存在性 high；归属本消息 medium)"
+          "confidence": "unknown",
+          "evidence": "goods_id@0x5e3462d,0x15f9d3a4 (存在性 high；归属本消息 medium)",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "buy_currency_id",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "high",
-          "evidence": "buy_currency_id@0x5992bb9 (存在性 high；归属本消息 medium)"
+          "confidence": "unknown",
+          "evidence": "buy_currency_id@0x5992bb9 (存在性 high；归属本消息 medium)",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "buy_num",
           "number": null,
           "wire": "varint",
           "value": 1,
-          "confidence": "high",
-          "evidence": "buy_num@0x5a476ad,0x5d45646"
+          "confidence": "unknown",
+          "evidence": "buy_num@0x5a476ad,0x5d45646",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "buy_price",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "medium",
-          "evidence": "buy_price@0x5b6d48d,0x5af7b07 (可能由服务端定价，客户端不一定发送)"
+          "confidence": "unknown",
+          "evidence": "buy_price@0x5b6d48d,0x5af7b07 (可能由服务端定价，客户端不一定发送)",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "currency_type",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "medium",
-          "evidence": "currency_type@0x5a83012,0x15f9d450"
+          "confidence": "unknown",
+          "evidence": "currency_type@0x5a83012,0x15f9d450",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "bullet_gid",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "medium",
-          "evidence": "bullet_gid@0x5be2c9c (弹药场景候选字段)"
+          "confidence": "unknown",
+          "evidence": "bullet_gid@0x5be2c9c (弹药场景候选字段)",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         }
-      ]
+      ],
+      "_source": "so-XOR-0x10-string + cs_*.pb.cpp",
+      "runtime_required_for_field_numbers": true
     },
     "CSGetCurrencyReq": {
       "confidence": "high",
@@ -169,18 +205,26 @@
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "high",
-          "evidence": "currency_id@0x5c203f2"
+          "confidence": "unknown",
+          "evidence": "currency_id@0x5c203f2",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "currency_type",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "medium",
-          "evidence": "currency_type@0x5a83012,0x15f9d450"
+          "confidence": "unknown",
+          "evidence": "currency_type@0x5a83012,0x15f9d450",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         }
-      ]
+      ],
+      "_source": "so-XOR-0x10-string + cs_*.pb.cpp",
+      "runtime_required_for_field_numbers": true
     },
     "CSCurrencyExchangeReq": {
       "confidence": "high",
@@ -191,26 +235,48 @@
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "medium",
-          "evidence": "src_currency@0x57ef5f9"
+          "confidence": "unknown",
+          "evidence": "src_currency@0x57ef5f9",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "dst_currency",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "medium",
-          "evidence": "dst_currency@0x5e6ee33"
+          "confidence": "unknown",
+          "evidence": "dst_currency@0x5e6ee33",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         },
         {
           "name": "currency_num",
           "number": null,
           "wire": "varint",
           "value": null,
-          "confidence": "high",
-          "evidence": "currency_num@0x5df6326"
+          "confidence": "unknown",
+          "evidence": "currency_num@0x5df6326",
+          "_source": "runtime_descriptor_required",
+          "runtime_required": true,
+          "_comment_stage2": "字段号必须真机导出，禁止猜测"
         }
-      ]
+      ],
+      "_source": "so-XOR-0x10-string + cs_*.pb.cpp",
+      "runtime_required_for_field_numbers": true
     }
+  },
+  "_stage2_annotations": {
+    "generated_by": "阶段2 ProtoSig",
+    "field_numbers": "全部 number=null：静态不可得，必须真机 DescriptorPool 导出；禁止猜测。",
+    "runtime_required": [
+      "gateway.host",
+      "gateway.port",
+      "frame.session.cmd_id",
+      "frame.session.seq_id",
+      "session.signature_hex"
+    ]
   }
 }

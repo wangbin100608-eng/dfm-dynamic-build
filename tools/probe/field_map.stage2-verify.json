@@ -1,0 +1,403 @@
+{
+  "frame": {
+    "_comment": "默认帧布局是 UE4 私有网关常见形态的假设（medium 可信度）；真实布局以 dump_traffic.js 抓到的字节为准调整 order。length 元素会在最后自动回填。",
+    "order": [
+      {
+        "id": "len",
+        "kind": "length",
+        "size": 4,
+        "endian": "little",
+        "covers": "rest",
+        "_source": "local_calculation",
+        "confidence": "medium",
+        "_comment_stage2": "帧布局为 UE4 私有网关常见形态假设，需用 dump_traffic.js 真实字节校准"
+      },
+      {
+        "id": "cmd",
+        "kind": "int",
+        "size": 4,
+        "endian": "little",
+        "source": "session.cmd_id",
+        "_source": "capture_runtime",
+        "confidence": "unknown",
+        "runtime_required": true,
+        "_comment_stage2": "帧布局为 UE4 私有网关常见形态假设，需用 dump_traffic.js 真实字节校准"
+      },
+      {
+        "id": "seq",
+        "kind": "int",
+        "size": 4,
+        "endian": "little",
+        "source": "session.seq_id",
+        "_source": "capture_runtime",
+        "confidence": "unknown",
+        "runtime_required": true,
+        "_comment_stage2": "帧布局为 UE4 私有网关常见形态假设，需用 dump_traffic.js 真实字节校准"
+      },
+      {
+        "id": "signature",
+        "kind": "bytes",
+        "source": "session.signature_hex",
+        "hex": true,
+        "enabled": false,
+        "_comment": "默认关闭；确认签名在帧中的位置/长度后启用，并由 TSS 运行时注入。",
+        "_source": "capture_runtime",
+        "confidence": "unknown",
+        "runtime_required": true,
+        "_comment_stage2": "帧布局为 UE4 私有网关常见形态假设，需用 dump_traffic.js 真实字节校准"
+      },
+      {
+        "id": "body",
+        "kind": "bytes",
+        "source": "@body",
+        "_source": "local_protobuf_builder",
+        "confidence": "high",
+        "_comment_stage2": "帧布局为 UE4 私有网关常见形态假设，需用 dump_traffic.js 真实字节校准"
+      }
+    ]
+  },
+  "response": {
+    "length_prefix_size": 0,
+    "endian": "little",
+    "read_timeout": 2.0,
+    "max_bytes": 16777216
+  },
+  "signature": {
+    "mode": "file",
+    "usb": true,
+    "package_or_pid": "com.tencent.tmgp.dfm",
+    "_comment": "file: 从 capture 的 signature_hex 读；frida: 调用 --frida-sign-script 导出的 rpc.exports.sign(hex)。签名必须由真实客户端/TSS 运行时提供。"
+  },
+  "gateway": {
+    "host": null,
+    "port": null,
+    "_comment": "必须从抓包填入。so 中仅有内网字面量 http://10.32.75.192:9093/app@0x15f9d8c4，不可当生产端点。"
+  },
+  "_evidence_legend": {
+    "high": "so 明文字符串 + proto 编译路径双重证据",
+    "medium": "仅字符串池证据 / 历史版本推断",
+    "unknown": "静态无法确认，必须抓包或 descriptor 导出",
+    "field_number_inferred": "number 由 struct offset 顺序推断（推导规则见 tools/emu/extract_field_sets.py），非 DescriptorPool 导出；用于离线构造测试，不能当服务端接受的真实字段号。",
+    "must_capture_runtime": "标记为 runtime-required 的字段/参数：静态不可得，必须由真机 Frida/dump 提供。"
+  },
+  "_stage2_annotations": {
+    "generated_by": "阶段2 ProtoSig",
+    "so": "/root/三角洲/dfm-apk/so-analysis/libUE4.so",
+    "message_names_source": "全文件 XOR-0x10 解码扫描（tools/emu/harvest_pb_messages.py）；4 个核心消息名均在 XOR 池命中，明文池 0 条",
+    "field_numbers": "所有 number 均为 medium 推断或 null；无一来自 DescriptorPool；真机 find_descriptor.js 导出前不得升级为 high",
+    "gateway": "host/port 为 runtime-required，so 中仅内网字面量不可当生产端点"
+  },
+  "_comment": "阶段2 离线验证专用：4类消息；字段号来自 medium 推断/null，绝不发往任何地址",
+  "messages": {
+    "LimitBuyReq (限购购买)": {
+      "confidence": "medium",
+      "evidence": "0xc4d3520",
+      "runtime_required_for_field_numbers": true,
+      "fields": [
+        {
+          "name": "curr_buy_limit",
+          "number": 1,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d3544 struct_off=0x30",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "next_period_start",
+          "number": 2,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d3564 struct_off=0x38",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "limit_type",
+          "number": 3,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d3584 struct_off=0x3c",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "buy_num",
+          "number": 5,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d35a8 struct_off=0x48",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "level",
+          "number": 4,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d35f4 struct_off=0x40",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "exp",
+          "number": 7,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d3614 struct_off=0x50",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "next_level_exp",
+          "number": 6,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d3634 struct_off=0x4c",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "total_exp",
+          "number": 9,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4d3674 struct_off=0x68",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "last_update_time",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc4d3694 struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        }
+      ]
+    },
+    "MallOrderReq (订单购买)": {
+      "confidence": "medium",
+      "evidence": "0xc4f6800",
+      "runtime_required_for_field_numbers": true,
+      "fields": [
+        {
+          "name": "currency",
+          "number": 3,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4f6898 struct_off=0x40",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "price",
+          "number": 5,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4f68b8 struct_off=0x50",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "buy_num",
+          "number": 6,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4f68d8 struct_off=0x58",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "to_pos",
+          "number": 7,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4f68f8 struct_off=0x60",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "order_id",
+          "number": 8,
+          "wire": "len",
+          "value": "test_order",
+          "confidence": "medium",
+          "evidence": "0xc4f6918 struct_off=0x68",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "durability",
+          "number": 2,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc4f6938 struct_off=0x30",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "assemble_info",
+          "number": 1,
+          "wire": "len",
+          "value": "test_order",
+          "confidence": "medium",
+          "evidence": "0xc4f6968 struct_off=0x28",
+          "_source": "inferred_from_struct_offset_order"
+        }
+      ]
+    },
+    "MarketTradeReq (交易定价)": {
+      "confidence": "medium",
+      "evidence": "0xc514000",
+      "runtime_required_for_field_numbers": true,
+      "fields": [
+        {
+          "name": "show_prop_id",
+          "number": 8,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc51408c struct_off=0x98",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "buy_currency_id",
+          "number": 3,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc5140ac struct_off=0x38",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "sell_currency_id",
+          "number": 4,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc5140cc struct_off=0x40",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "guide_price",
+          "number": 5,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc5140ec struct_off=0x48",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "price_range_begin",
+          "number": 6,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc51410c struct_off=0x50",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "price_range_end",
+          "number": 7,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc51412c struct_off=0x58",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "price_step",
+          "number": 1,
+          "wire": "varint",
+          "value": 1,
+          "confidence": "medium",
+          "evidence": "0xc51414c struct_off=0x18",
+          "_source": "inferred_from_struct_offset_order"
+        },
+        {
+          "name": "sale_lists",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc51417c struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        }
+      ]
+    },
+    "BulletOpReq (弹药操作)": {
+      "confidence": "medium",
+      "evidence": "0xc506200",
+      "runtime_required_for_field_numbers": true,
+      "fields": [
+        {
+          "name": "op_type",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc506224 struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        },
+        {
+          "name": "bullet_gid",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc50628c struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        },
+        {
+          "name": "bullet_op_num",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc5062c0 struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        },
+        {
+          "name": "target_gun_rec_id",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc5062f4 struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        },
+        {
+          "name": "target_gun_rec_gid",
+          "number": null,
+          "number_source": "inferred_from_struct_offset_order",
+          "confidence": "unknown",
+          "evidence": "0xc506328 struct_off=None",
+          "_source": "inferred_from_struct_offset_order_failed",
+          "runtime_required": true,
+          "_comment_stage2": "字段号未能从结构偏移推断；必须由 find_descriptor.js 或抓包提供，禁止猜测",
+          "wire": "varint",
+          "value": 1
+        }
+      ]
+    }
+  }
+}

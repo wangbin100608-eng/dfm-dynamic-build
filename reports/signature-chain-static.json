@@ -1,0 +1,293 @@
+{
+  "_meta": {
+    "so": "/root/三角洲/dfm-apk/so-analysis/libUE4.so",
+    "size": 561598448,
+    "method": "static symbol string presence + capstone linear sweep"
+  },
+  "symbols": [
+    {
+      "name": "SendTssData",
+      "given_offset": "0x5c32655",
+      "plain_offset": null,
+      "xor10_offset": "0x188cc71",
+      "plain_count": 0,
+      "xor10_count": 3,
+      "bytes_at_offset": "557108080000000000000010000000d0aa450174557108080000000000000010",
+      "linear_disasm_first8": [
+        {
+          "addr": "0x5c32645",
+          "mn": "udf",
+          "op": "#0"
+        },
+        {
+          "addr": "0x5c32649",
+          "mn": "adr",
+          "op": "x0, #0x5c32649"
+        },
+        {
+          "addr": "0x5c3264d",
+          "mn": "stur",
+          "op": "s0, [x0]"
+        }
+      ],
+      "disasm_valid_heuristic": "descriptor/data-like",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    },
+    {
+      "name": "TssSDKOnRecvSignature",
+      "given_offset": "0x4d7c3de",
+      "plain_offset": "0xc082",
+      "xor10_offset": null,
+      "plain_count": 1,
+      "xor10_count": 0,
+      "bytes_at_offset": "440b2c00000050485a0058d6cc04f400000000440e404c0c1d109e029d049306",
+      "linear_disasm_first8": [
+        {
+          "addr": "0x4d7c3ce",
+          "mn": "stxr",
+          "op": "w2, x12, [x16]"
+        }
+      ],
+      "disasm_valid_heuristic": "possibly-code",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    },
+    {
+      "name": "InitTss",
+      "given_offset": "0x592d059",
+      "plain_offset": null,
+      "xor10_offset": "0x1cce45e",
+      "plain_count": 0,
+      "xor10_count": 3,
+      "bytes_at_offset": "0c1d109e029d0493069408950c0a026c0c1f304c0e00deddd3d4d5440b000010",
+      "linear_disasm_first8": [
+        {
+          "addr": "0x592d049",
+          "mn": "strb",
+          "op": "w20, [x10], #0x11"
+        },
+        {
+          "addr": "0x592d04d",
+          "mn": "ldr",
+          "op": "q14, #0x593bac1"
+        },
+        {
+          "addr": "0x592d051",
+          "mn": "udf",
+          "op": "#0"
+        }
+      ],
+      "disasm_valid_heuristic": "possibly-code",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    },
+    {
+      "name": "EVP_DigestSignInit",
+      "given_offset": "0x4d7699f",
+      "plain_offset": null,
+      "xor10_offset": null,
+      "plain_count": 0,
+      "xor10_count": 0,
+      "bytes_at_offset": "009cf8cb04fc00000000440e50500c1d109e029d0493069408950a960c0a02d0",
+      "linear_disasm_first8": [],
+      "disasm_valid_heuristic": "descriptor/data-like",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    },
+    {
+      "name": "EVP_PKEY_sign",
+      "given_offset": "0x4fbb9e5",
+      "plain_offset": null,
+      "xor10_offset": "0x1b2ef3f",
+      "plain_count": 0,
+      "xor10_count": 2,
+      "bytes_at_offset": "d5d6440b600c1f304c0e00deddd3d4d5d6000038000000683e7e00849a5005b4",
+      "linear_disasm_first8": [],
+      "disasm_valid_heuristic": "descriptor/data-like",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    },
+    {
+      "name": "RSA_sign",
+      "given_offset": "0x4fbba6b",
+      "plain_offset": null,
+      "xor10_offset": "0x244c24e",
+      "plain_count": 0,
+      "xor10_count": 2,
+      "bytes_at_offset": "0010000000dc3e7e00c49a5005900000000000000010000000f03e7e00740d1a",
+      "linear_disasm_first8": [
+        {
+          "addr": "0x4fbba5b",
+          "mn": "adr",
+          "op": "x1, #0x4ff9bdc"
+        }
+      ],
+      "disasm_valid_heuristic": "possibly-code",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    },
+    {
+      "name": "sha256WithRSAEncryption",
+      "given_offset": "0x5e91ffd",
+      "plain_offset": null,
+      "xor10_offset": "0x1f7006f",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "bytes_at_offset": "0000006ca46b01042a5b090c000000000000001000000080a46b01fc295b090c",
+      "linear_disasm_first8": [],
+      "disasm_valid_heuristic": "descriptor/data-like",
+      "verdict": "给定偏移不是函数入口（字节为 protobuf descriptor 表/字符串池）"
+    }
+  ],
+  "extra_symbols": [
+    {
+      "name": "EVP_SignFinal",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x18bf328"
+      ],
+      "present": true
+    },
+    {
+      "name": "RSA_private_encrypt",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x21dae4c"
+      ],
+      "present": true
+    },
+    {
+      "name": "RSA_new",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x1787043"
+      ],
+      "present": true
+    },
+    {
+      "name": "EVP_PKEY_new",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x231451a"
+      ],
+      "present": true
+    },
+    {
+      "name": "md5WithRSAEncryption",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x1d9ac64"
+      ],
+      "present": true
+    },
+    {
+      "name": "sha1WithRSAEncryption",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x26c0908"
+      ],
+      "present": true
+    },
+    {
+      "name": "HMAC",
+      "plain_count": 1,
+      "xor10_count": 12,
+      "xor10_offsets": [
+        "0x16eb42e",
+        "0x18bec4f",
+        "0x18bf38e",
+        "0x1a94db3"
+      ],
+      "present": true
+    },
+    {
+      "name": "EVP_PKEY_verify",
+      "plain_count": 0,
+      "xor10_count": 4,
+      "xor10_offsets": [
+        "0x164eae2",
+        "0x1d0075e",
+        "0x213f9ed",
+        "0x21daa84"
+      ],
+      "present": true
+    },
+    {
+      "name": "RSA_verify",
+      "plain_count": 0,
+      "xor10_count": 4,
+      "xor10_offsets": [
+        "0x1787088",
+        "0x1bcbf73",
+        "0x1f702d5",
+        "0x200b07a"
+      ],
+      "present": true
+    },
+    {
+      "name": "d2i_PrivateKey",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x24e949e"
+      ],
+      "present": true
+    },
+    {
+      "name": "AES_cbc_encrypt",
+      "plain_count": 0,
+      "xor10_count": 0,
+      "xor10_offsets": [],
+      "present": false
+    },
+    {
+      "name": "cscpp_security.pb.cpp",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x167b15a"
+      ],
+      "present": true
+    },
+    {
+      "name": "cscpp_tss.pb.cpp",
+      "plain_count": 0,
+      "xor10_count": 1,
+      "xor10_offsets": [
+        "0x1d2d35a"
+      ],
+      "present": true
+    }
+  ],
+  "algorithm_assessment": {
+    "hash_candidates_present": [
+      "SHA-256",
+      "MD5",
+      "SHA-1"
+    ],
+    "asymmetric_stack": [
+      "EVP_PKEY_sign_init",
+      "EVP_PKEY_sign",
+      "RSA_sign",
+      "RSA_private_encrypt",
+      "EVP_SignFinal"
+    ],
+    "oid_names_present_xor10": [
+      "sha256WithRSAEncryption",
+      "md5WithRSAEncryption",
+      "sha1WithRSAEncryption"
+    ],
+    "verdict": "so 静态包含完整 RSA + SHA256/MD5/SHA1 签名栈，但无法从字符串存在性判定 TSS 具体使用哪一条；须在真机 hook RSA_sign/EVP_PKEY_sign 的 type 参数或 OID 名称确定。",
+    "likely_pkcs1_v15": true,
+    "likely_pkcs1_v15_evidence": "存在 RSA_sign(type=NID_sha256/sha1/md5) 与 md5/sha256WithRSAEncryption OID 名称；EVP_PKEY_sign 默认 RSA padding 为 PKCS#1 v1.5（除非显式设 RSA_PKCS1_PSS_PADDING）。"
+  },
+  "runtime_inputs_required": [
+    "待签名 payload 的精确字节范围（frame 中哪一段参与签名）",
+    "签名私钥或 TSS SDK 内持有的密钥句柄（不可从 so 静态提取）",
+    "hash 算法选择（SHA256 / MD5 / SHA1）与 RSA padding（PKCS#1 v1.5 / PSS）",
+    "设备指纹 qimei/oaid、时间戳、会话密钥、uin —— TSS 风控输入",
+    "cmd_id / seq_id 的真实值及其是否进入签名摘要",
+    "签名在帧中的位置与长度（frame.order 需抓包校准）"
+  ]
+}
