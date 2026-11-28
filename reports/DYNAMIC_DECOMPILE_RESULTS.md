@@ -142,3 +142,20 @@ pb.CSMallGetUnlockExchangeIdReq  pb.CSMallGetMysteryShopItemsRes  pb...
 4. **xref 结果落盘**：`reports/xref-csmallbuy-v2.json`、`reports/xref-fields.json`、`reports/xref-goodsid-xor.json`（均为空命中，附原因）。
 
 结论：纯 CPU 路线在"XOR 字符串解码 + protobuf 消息枚举"上产出确定增量；字段号/网关/签名仍需真机。
+
+---
+
+## 附录 B：动态反编译复跑验证（2026-11-28 13:21 UTC）
+
+按用户要求再次运行，全部结果复现一致（证明工具链可重复）：
+
+| 项目 | 命令 | 复跑结果 |
+|---|---|---|
+| WASM 游戏核心 | `node wasm_dynamic_full.cjs` | 版本 `20261104-204943`；导出 101 / 导入 69；1663 件物品（protect 98/gun 69/ammo 119/props 795/acc 582）；沙箱 7 字段 |
+| Unicorn 指令级 | `emu_native_trace.py --offset 0xab12f98 --count 12` | `_Znwm` thunk 跳转 + 栈操作全程跟踪；PC=0x110357c18 |
+| XOR 确定性验证 | `xor_string_harvest.py --verify` | `buy_price`=3 XOR/0 明文、`CSMallBuyReq`=1/0、`bullet_gid`=1/0、`cmd_id`=0/2 明文（与首次一致） |
+| XOR 全量挖矿 | `xor_string_harvest.py --keywords ...` | 443 条；25 个 `pb.*` 消息（含 `CSTSSQueryPlayerCreditScore`、`CSTssAntiDataTransferNtf` 等）；产物 `xor-harvest-rerun.json` |
+| descriptor 扫描 | `emu_descriptor.py --scan` | 无 `FileDescriptorProto`（静态字段号不可得，结论不变） |
+| 字段集提取 | `extract_field_sets.py --func 0xc4f6800` | 该偏移在本版本（561MB so）无字段（版本差异，与旧版 355MB so 不同） |
+
+**结论**：本轮复跑确认 CPU 动态反编译工具链稳定可重复；所有结论与首次运行一致，无漂移。
