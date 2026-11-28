@@ -1,0 +1,898 @@
+{
+  "file": "dfm-official-1.201.37119.49.apk",
+  "size": 1625586573,
+  "sha256": "1ce71a21bcd8d52399be5f8a7ef8f28525d2148c3cb73f97592a03c03473f44a",
+  "entry_count": 960,
+  "top_level": {
+    "res": 595,
+    "org": 128,
+    "lib": 90,
+    "assets": 67,
+    "META-INF": 48,
+    "kotlin": 7,
+    "classes.dex": 1,
+    "classes2.dex": 1,
+    "DebugProbesKt.bin": 1,
+    "HMSCore-availableupdate.properties": 1,
+    "HMSCore-base.properties": 1,
+    "HMSCore-baselegacyapi.properties": 1,
+    "HMSCore-device.properties": 1,
+    "HMSCore-hatool.properties": 1,
+    "HMSCore-log.properties": 1,
+    "HMSCore-stats.properties": 1,
+    "HMSCore-ui.properties": 1,
+    "agconnect-core.properties": 1,
+    "com": 1,
+    "core-common.properties": 1,
+    "jacoco-agent.properties": 1,
+    "network-common.properties": 1,
+    "network-framework-compat.properties": 1,
+    "network-grs.properties": 1,
+    "okhttp3": 1,
+    "play-services-basement.properties": 1,
+    "play-services-tasks.properties": 1,
+    "review-ktx.properties": 1,
+    "review.properties": 1,
+    "AndroidManifest.xml": 1,
+    "resources.arsc": 1
+  },
+  "dex": [
+    {
+      "name": "classes.dex",
+      "size": 12347300
+    },
+    {
+      "name": "classes2.dex",
+      "size": 5339096
+    }
+  ],
+  "native_libs": [
+    {
+      "name": "lib/arm64-v8a/libAkAudioInput.so",
+      "size": 223072
+    },
+    {
+      "name": "lib/arm64-v8a/libAkCompressor.so",
+      "size": 224856
+    },
+    {
+      "name": "lib/arm64-v8a/libAkConvolutionReverb.so",
+      "size": 258904
+    },
+    {
+      "name": "lib/arm64-v8a/libAkDelay.so",
+      "size": 223816
+    },
+    {
+      "name": "lib/arm64-v8a/libAkExpander.so",
+      "size": 225464
+    },
+    {
+      "name": "lib/arm64-v8a/libAkFlanger.so",
+      "size": 233216
+    },
+    {
+      "name": "lib/arm64-v8a/libAkGain.so",
+      "size": 223152
+    },
+    {
+      "name": "lib/arm64-v8a/libAkGuitarDistortion.so",
+      "size": 235280
+    },
+    {
+      "name": "lib/arm64-v8a/libAkHarmonizer.so",
+      "size": 256496
+    },
+    {
+      "name": "lib/arm64-v8a/libAkMatrixReverb.so",
+      "size": 244232
+    },
+    {
+      "name": "lib/arm64-v8a/libAkMotion.so",
+      "size": 237736
+    },
+    {
+      "name": "lib/arm64-v8a/libAkParametricEQ.so",
+      "size": 227648
+    },
+    {
+      "name": "lib/arm64-v8a/libAkPeakLimiter.so",
+      "size": 227304
+    },
+    {
+      "name": "lib/arm64-v8a/libAkPitchShifter.so",
+      "size": 233504
+    },
+    {
+      "name": "lib/arm64-v8a/libAkRecorder.so",
+      "size": 238392
+    },
+    {
+      "name": "lib/arm64-v8a/libAkReflect.so",
+      "size": 253264
+    },
+    {
+      "name": "lib/arm64-v8a/libAkRoomVerb.so",
+      "size": 306320
+    },
+    {
+      "name": "lib/arm64-v8a/libAkSilenceGenerator.so",
+      "size": 221592
+    },
+    {
+      "name": "lib/arm64-v8a/libAkSineTone.so",
+      "size": 222992
+    },
+    {
+      "name": "lib/arm64-v8a/libAkSoundSeedAir.so",
+      "size": 260448
+    },
+    {
+      "name": "lib/arm64-v8a/libAkSoundSeedImpact.so",
+      "size": 229024
+    },
+    {
+      "name": "lib/arm64-v8a/libAkStereoDelay.so",
+      "size": 233880
+    },
+    {
+      "name": "lib/arm64-v8a/libAkSynthOne.so",
+      "size": 240440
+    },
+    {
+      "name": "lib/arm64-v8a/libAkTimeStretch.so",
+      "size": 243232
+    },
+    {
+      "name": "lib/arm64-v8a/libAkToneGen.so",
+      "size": 240576
+    },
+    {
+      "name": "lib/arm64-v8a/libAkTremolo.so",
+      "size": 227504
+    },
+    {
+      "name": "lib/arm64-v8a/libApmBacktrace.so",
+      "size": 944624
+    },
+    {
+      "name": "lib/arm64-v8a/libAuro.so",
+      "size": 3278816
+    },
+    {
+      "name": "lib/arm64-v8a/libCrankcaseAudioREVModelPlayer.so",
+      "size": 186336
+    },
+    {
+      "name": "lib/arm64-v8a/libCrashSight.so",
+      "size": 1396368
+    },
+    {
+      "name": "lib/arm64-v8a/libCrashSightPlugin.so",
+      "size": 247760
+    },
+    {
+      "name": "lib/arm64-v8a/libDolbyAtmosRenderer.so",
+      "size": 330152
+    },
+    {
+      "name": "lib/arm64-v8a/libDolbyStereoRenderer.so",
+      "size": 264616
+    },
+    {
+      "name": "lib/arm64-v8a/libGCloudVoice.so",
+      "size": 4024976
+    },
+    {
+      "name": "lib/arm64-v8a/libGPM.so",
+      "size": 2574912
+    },
+    {
+      "name": "lib/arm64-v8a/libGVoicePlugin.so",
+      "size": 388256
+    },
+    {
+      "name": "lib/arm64-v8a/libHttpDnsCore.so",
+      "size": 202144
+    },
+    {
+      "name": "lib/arm64-v8a/libHttpDnsPlugin.so",
+      "size": 794872
+    },
+    {
+      "name": "lib/arm64-v8a/libIgniterLive.so",
+      "size": 247712
+    },
+    {
+      "name": "lib/arm64-v8a/libJSlapbackEcho.so",
+      "size": 136792
+    },
+    {
+      "name": "lib/arm64-v8a/libJSlapbackInput.so",
+      "size": 128600
+    },
+    {
+      "name": "lib/arm64-v8a/libJSlapbackRecorder.so",
+      "size": 132696
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXCore.so",
+      "size": 5375536
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXLBS.so",
+      "size": 51584
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXQQ.so",
+      "size": 199952
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXSystem.so",
+      "size": 18352
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXTDM.so",
+      "size": 18344
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXWebView.so",
+      "size": 166872
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXWechat.so",
+      "size": 466504
+    },
+    {
+      "name": "lib/arm64-v8a/libMSDKPIXXG.so",
+      "size": 167512
+    },
+    {
+      "name": "lib/arm64-v8a/libMasteringSuite.so",
+      "size": 259864
+    },
+    {
+      "name": "lib/arm64-v8a/libMcDSP.so",
+      "size": 314144
+    },
+    {
+      "name": "lib/arm64-v8a/libPcdnTegTransSdk.so",
+      "size": 5436952
+    },
+    {
+      "name": "lib/arm64-v8a/libPixFFmpeg.so",
+      "size": 4479664
+    },
+    {
+      "name": "lib/arm64-v8a/libPixUI_PXPlugin.so",
+      "size": 4975800
+    },
+    {
+      "name": "lib/arm64-v8a/libPixVideo.so",
+      "size": 149632
+    },
+    {
+      "name": "lib/arm64-v8a/libPixVideoCore.so",
+      "size": 740896
+    },
+    {
+      "name": "lib/arm64-v8a/libPluginCrosCurl.so",
+      "size": 18264
+    },
+    {
+      "name": "lib/arm64-v8a/libPxExtFFi.so",
+      "size": 575872
+    },
+    {
+      "name": "lib/arm64-v8a/libPxExtJava.so",
+      "size": 592392
+    },
+    {
+      "name": "lib/arm64-v8a/libResonanceAudio.so",
+      "size": 1007316
+    },
+    {
+      "name": "lib/arm64-v8a/libRoosterNN.so",
+      "size": 2249624
+    },
+    {
+      "name": "lib/arm64-v8a/libTDataMaster.so",
+      "size": 801656
+    },
+    {
+      "name": "lib/arm64-v8a/libUE4.so",
+      "size": 561598448
+    },
+    {
+      "name": "lib/arm64-v8a/libc++_shared.so",
+      "size": 992680
+    },
+    {
+      "name": "lib/arm64-v8a/libcrosCurl.so",
+      "size": 3109576
+    },
+    {
+      "name": "lib/arm64-v8a/libgamemaster.so",
+      "size": 687280
+    },
+    {
+      "name": "lib/arm64-v8a/libgcloud.so",
+      "size": 11586184
+    },
+    {
+      "name": "lib/arm64-v8a/libgcloudcore.so",
+      "size": 1411952
+    },
+    {
+      "name": "lib/arm64-v8a/libiZotope.so",
+      "size": 495968
+    },
+    {
+      "name": "lib/arm64-v8a/libitophttpdns.so",
+      "size": 283928
+    },
+    {
+      "name": "lib/arm64-v8a/libmagt_sdk.so",
+      "size": 564072
+    },
+    {
+      "name": "lib/arm64-v8a/libnpps-jni.so",
+      "size": 31480
+    },
+    {
+      "name": "lib/arm64-v8a/libopenplatform.so",
+      "size": 624896
+    },
+    {
+      "name": "lib/arm64-v8a/libpixuiCurl.so",
+      "size": 1074584
+    },
+    {
+      "name": "lib/arm64-v8a/libplaycore.so",
+      "size": 264280
+    },
+    {
+      "name": "lib/arm64-v8a/libsnapdragon_services_adk.qti.so",
+      "size": 415296
+    },
+    {
+      "name": "lib/arm64-v8a/libsnapdragon_services_qape.qti.so",
+      "size": 525584
+    },
+    {
+      "name": "lib/arm64-v8a/libtapsdkcore.so",
+      "size": 4226392
+    },
+    {
+      "name": "lib/arm64-v8a/libtdmqimei.so",
+      "size": 726776
+    },
+    {
+      "name": "lib/arm64-v8a/libtersafe.so",
+      "size": 5731816
+    },
+    {
+      "name": "lib/arm64-v8a/libtgpa.so",
+      "size": 1673320
+    },
+    {
+      "name": "lib/arm64-v8a/libthemis.so",
+      "size": 853816
+    },
+    {
+      "name": "lib/arm64-v8a/libtransceiver.so",
+      "size": 215472
+    },
+    {
+      "name": "lib/arm64-v8a/libturinggame.so",
+      "size": 240944
+    },
+    {
+      "name": "lib/arm64-v8a/libwwise_audio_capture.so",
+      "size": 182408
+    },
+    {
+      "name": "lib/arm64-v8a/libxgVipSecurity.so",
+      "size": 47168
+    },
+    {
+      "name": "lib/arm64-v8a/libzeus_direct_dex.so",
+      "size": 10472
+    },
+    {
+      "name": "lib/arm64-v8a/libzeusflipped.so",
+      "size": 18256
+    },
+    {
+      "name": "lib/arm64-v8a/libtprt.so",
+      "size": 1655432
+    }
+  ],
+  "assets": [
+    {
+      "name": "assets/GCloudVoice/config.json",
+      "size": 1611
+    },
+    {
+      "name": "assets/GCloudVoice/decoder_v4_small.nn",
+      "size": 2472220
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_1.nn",
+      "size": 810716
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_2.nn",
+      "size": 810716
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_3.nn",
+      "size": 829428
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_4.nn",
+      "size": 852032
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_5.nn",
+      "size": 648392
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_6.nn",
+      "size": 648392
+    },
+    {
+      "name": "assets/GCloudVoice/dse_v1_align.nn",
+      "size": 50212
+    },
+    {
+      "name": "assets/GCloudVoice/encoder_v4_small.nn",
+      "size": 2592572
+    },
+    {
+      "name": "assets/GCloudVoice/libgvoicensmodel.bin",
+      "size": 2312680
+    },
+    {
+      "name": "assets/MSDKBuglyConfig.json",
+      "size": 719
+    },
+    {
+      "name": "assets/MSDKConfig.ini",
+      "size": 8814
+    },
+    {
+      "name": "assets/MSDKRetMsg.json",
+      "size": 1648
+    },
+    {
+      "name": "assets/MidasPay.zip",
+      "size": 1302851
+    },
+    {
+      "name": "assets/QCC_500638030",
+      "size": 10446
+    },
+    {
+      "name": "assets/UE4CommandLine.txt",
+      "size": 40
+    },
+    {
+      "name": "assets/captcha_encrpted",
+      "size": 5524
+    },
+    {
+      "name": "assets/grs_sdk_global_route_config_opendevicesdk.json",
+      "size": 7356
+    },
+    {
+      "name": "assets/grs_sdk_global_route_config_opensdkService.json",
+      "size": 10277
+    },
+    {
+      "name": "assets/grs_sdk_server_config.json",
+      "size": 370
+    },
+    {
+      "name": "assets/grs_sp.bks",
+      "size": 1470
+    },
+    {
+      "name": "assets/hmsincas.bks",
+      "size": 3670
+    },
+    {
+      "name": "assets/hmsrootcas.bks",
+      "size": 34118
+    },
+    {
+      "name": "assets/main.obb.png",
+      "size": 1391074137
+    },
+    {
+      "name": "assets/metaJs/applet_loader_entrance",
+      "size": 21301
+    },
+    {
+      "name": "assets/msdk_permission_content.html",
+      "size": 537
+    },
+    {
+      "name": "assets/msdk_policy_content.html",
+      "size": 1350
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXCore",
+      "size": 736179
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXLBS",
+      "size": 46646
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXQQ",
+      "size": 90161
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXSystem",
+      "size": 28418
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXTDM",
+      "size": 9561
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXWeChat",
+      "size": 117827
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXWebView",
+      "size": 35960
+    },
+    {
+      "name": "assets/msdkpix/MSDKPIXXG",
+      "size": 45856
+    },
+    {
+      "name": "assets/popup/MSDKPopupLocal.config",
+      "size": 1088
+    },
+    {
+      "name": "assets/popup/MSDKPopup_0_2_2_0bba847357668ad690aef018a6771fa6.html",
+      "size": 828
+    },
+    {
+      "name": "assets/popup/MSDKPopup_0_2_2_f2e8f5050690e378955d1278b331cfb2.html",
+      "size": 272
+    },
+    {
+      "name": "assets/verifier",
+      "size": 161
+    },
+    {
+      "name": "assets/background.9.png",
+      "size": 6626
+    },
+    {
+      "name": "assets/buttonNegt.png",
+      "size": 3309
+    },
+    {
+      "name": "assets/buttonPost.png",
+      "size": 3378
+    },
+    {
+      "name": "assets/button_green.9.png",
+      "size": 1671
+    },
+    {
+      "name": "assets/button_red.9.png",
+      "size": 1399
+    },
+    {
+      "name": "assets/com.tencent.open.config.json",
+      "size": 56
+    },
+    {
+      "name": "assets/h5_qr_back.png",
+      "size": 116
+    },
+    {
+      "name": "assets/libwbsafeedit",
+      "size": 12132
+    },
+    {
+      "name": "assets/libwbsafeedit_64",
+      "size": 18344
+    },
+    {
+      "name": "assets/libwbsafeedit_x86",
+      "size": 15672
+    },
+    {
+      "name": "assets/libwbsafeedit_x86_64",
+      "size": 18168
+    },
+    {
+      "name": "assets/yyb_appdetail_bg_floatingwindow.9.png",
+      "size": 478
+    },
+    {
+      "name": "assets/yyb_appdetail_showmore.png",
+      "size": 220
+    },
+    {
+      "name": "assets/yyb_friends.png",
+      "size": 1500
+    },
+    {
+      "name": "assets/yyb_icon_back.png",
+      "size": 339
+    },
+    {
+      "name": "assets/yyb_qq.png",
+      "size": 937
+    },
+    {
+      "name": "assets/yyb_qzone.png",
+      "size": 1201
+    },
+    {
+      "name": "assets/yyb_topbar.9.png",
+      "size": 235
+    },
+    {
+      "name": "assets/yyb_weixin.png",
+      "size": 1259
+    },
+    {
+      "name": "assets/__tpinfo.tsd.sig",
+      "size": 256
+    },
+    {
+      "name": "assets/tpginf.dat",
+      "size": 8
+    },
+    {
+      "name": "assets/__tpcfinfo.tsa",
+      "size": 272
+    },
+    {
+      "name": "assets/__tpsinfo.t.p.sin",
+      "size": 106
+    },
+    {
+      "name": "assets/__tpinfo.tp",
+      "size": 12
+    },
+    {
+      "name": "assets/__tpinfo.tsd",
+      "size": 6222
+    },
+    {
+      "name": "assets/__tpinfo.tsc.sig",
+      "size": 256
+    },
+    {
+      "name": "assets/__tpinfo.tsc",
+      "size": 1848
+    }
+  ],
+  "signature_files": [
+    "META-INF/DFMKEY.SF",
+    "META-INF/DFMKEY.DSA"
+  ],
+  "package": "com.tencent.tmgp.dfm",
+  "version_name": "1.201.37119.49",
+  "version_code": "2362",
+  "min_sdk": "24",
+  "target_sdk": "34",
+  "permissions": [
+    "android.permission.VIBRATE",
+    "android.permission.BLUETOOTH_CONNECT",
+    "android.permission.MODIFY_AUDIO_SETTINGS",
+    "android.permission.REQUEST_INSTALL_PACKAGES",
+    "android.permission.ACCESS_WIFI_STATE",
+    "com.hihonor.push.permission.READ_PUSH_NOTIFICATION_INFO",
+    "android.permission.READ_MEDIA_IMAGES",
+    "android.permission.WRITE_EXTERNAL_STORAGE",
+    "android.permission.BLUETOOTH",
+    "com.asus.msa.SupplementaryDID.ACCESS",
+    "com.tencent.tmgp.dfm.permission.XGPUSH_RECEIVE",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.CHANGE_NETWORK_STATE",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "com.huawei.android.launcher.permission.CHANGE_BADGE",
+    "com.vivo.notification.permission.BADGE_ICON",
+    "com.tencent.tmgp.dfm.permission.PUSH_PROVIDER",
+    "android.permission.FOREGROUND_SERVICE",
+    "android.permission.SCHEDULE_EXACT_ALARM",
+    "android.permission.INTERNET",
+    "com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE",
+    "android.permission.RECEIVE_USER_PRESENT",
+    "android.permission.CHANGE_WIFI_STATE",
+    "com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE",
+    "android.permission.BLUETOOTH_ADMIN",
+    "android.permission.RESTART_PACKAGES",
+    "com.xiaomi.gamecenter.preload.permission.PRELOAD_PROVIDER",
+    "android.permission.GET_TASKS",
+    "com.tencent.tmgp.dfm.permission.MIPUSH_RECEIVE",
+    "android.permission.QUERY_ALL_PACKAGES",
+    "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+    "android.permission.WAKE_LOCK",
+    "android.permission.POST_NOTIFICATIONS",
+    "com.android.vending.CHECK_LICENSE",
+    "com.tencent.tmgp.dfm.permission.PROCESS_PUSH_MSG",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "com.vivo.game.provider.READ_GAME_PREDOWNLOAD"
+  ],
+  "activities": [
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait17",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait18",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait19",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait20",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Landscape1",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Landscape2",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Landscape3",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Landscape4",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Landscape5",
+    "com.bytedance.android.dy.sdk.stub.Video_Standard_Activity_DouyinWebAuthorizeActivity",
+    "com.bytedance.android.dy.sdk.stub.VideoAuthorizeActivityProxy",
+    "com.bytedance.android.openliveplugin.stub.activity.DouyinAuthorizeActivityProxy",
+    "com.bytedance.android.openliveplugin.stub.activity.DouyinAuthorizeActivityLiveProcessProxy",
+    "com.bytedance.android.openliveplugin.stub.activity.StubActivity$Activity_Portrait",
+    "com.bytedance.android.openliveplugin.stub.activity.StubActivity$Activity_Portrait2",
+    "com.bytedance.android.openliveplugin.stub.activity.StubActivity$Activity_Portrait3",
+    "com.bytedance.android.openliveplugin.stub.activity.StubActivity$Activity_Portrait4",
+    "com.bytedance.android.openliveplugin.stub.activity.StubActivity$Activity_Portrait5",
+    "com.byted.live.lite.Activity_bytelive_standard",
+    "com.byted.live.lite.Activity_bytelive_singleTask4",
+    "com.byted.live.lite.Activity_bytelive_singleTop3",
+    "com.byted.live.lite.Activity_bytelive_singleTop2",
+    "com.byted.live.lite.Activity_bytelive_singleTop5",
+    "com.byted.live.lite.Activity_main_standard",
+    "com.byted.live.lite.Activity_bytelive_singleTop4",
+    "com.byted.live.lite.Activity_bytelive_standard",
+    "com.byted.live.lite.Activity_bytelive_singleTop1",
+    "com.byted.live.lite.Activity_bytelive_singleTask1",
+    "com.byted.live.lite.Activity_bytelive_singleTop6",
+    "com.byted.live.lite.Activity_bytelive_singleTask2",
+    "com.byted.live.lite.Activity_bytelive_singleTask3",
+    "com.byted.live.lite.Activity_main_singleTask1",
+    "com.byted.live.lite.Activity_main_singleTask2",
+    "com.byted.live.lite.Activity_main_singleTask3",
+    "com.byted.live.lite.Activity_main_singleTask4",
+    "com.byted.live.lite.Activity_main_standard",
+    "com.byted.live.lite.Activity_main_singleTop1",
+    "com.byted.live.lite.Activity_main_singleTop2",
+    "com.byted.live.lite.Activity_main_singleInstance1",
+    "com.itop.gcloud.msdk.pixui.lbs.PermissionActivity",
+    "com.byted.live.lite.Activity_main_singleTop5",
+    "com.byted.live.lite.Activity_main_singleTop6",
+    "com.byted.live.lite.Activity_main_singleTop3",
+    "com.byted.live.lite.Activity_main_singleTop4",
+    "com.byted.live.lite.Activity_bytelive_singleInstance1",
+    "com.bytedance.android.dy.sdk.api.router.DSRouterActivity",
+    "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+    "com.epicgames.ue4.SplashActivity",
+    "com.huawei.hms.activity.BridgeActivity",
+    "com.huawei.hms.activity.EnableServiceActivity",
+    "com.epicgames.ue4.GameActivity",
+    "com.tencent.tmgp.dfm.DownloaderActivity",
+    "com.tencent.tmgp.dfm.PermissionActivity",
+    "com.tencent.midas.proxyactivity.APMidasPayProxyActivity",
+    "com.tencent.midas.wx.APMidasWXPayActivity",
+    "com.tencent.midas.jsbridge.APWebJSBridgeActivity",
+    "com.tencent.midas.qq.APMidasQQWalletActivity",
+    "com.tencent.estvbc.shadow.runtime.PluginDefaultProxyActivity",
+    "com.itop.gcloud.msdk.core.policy.MSDKPolicyActivity",
+    "com.tencent.connect.common.AssistActivity",
+    "com.tencent.tauth.AuthActivity",
+    "com.itop.gcloud.msdk.pixui.webview.WebViewActivity",
+    "com.itop.gcloud.msdk.pixui.webview.WebViewIPCActivity",
+    "com.itop.gcloud.msdk.pixui.wechat.WeChatAgentActivity",
+    "com.itop.gcloud.msdk.pixui.wechat.qrcode.WeChatQRCodeActivity",
+    "com.tencent.android.tpush.TpnsActivity",
+    "com.tencent.android.tpush.InnerTpnsActivity",
+    "com.bytedance.android.openlive.broadcast.stub.activity.DouyinAuthorizeActivityProxy",
+    "com.bytedance.android.openlive.broadcast.stub.activity.StubActivity$Activity_Portrait",
+    "com.bytedance.android.openlive.broadcast.stub.activity.StubActivity$Activity_Landscape",
+    "com.bytedance.android.openlive.broadcast.stub.activity.StubActivity$Activity_Portrait2",
+    "com.bytedance.android.openlive.broadcast.stub.activity.StubActivity$Activity_Portrait3",
+    "com.bytedance.android.openlive.broadcast.stub.activity.StubActivity$Activity_Portrait4",
+    "com.bytedance.android.openlive.broadcast.stub.activity.StubActivity$Activity_Portrait5",
+    "com.bytedance.bdinstall.migrate.MigrateDetectorActivity",
+    "com.byted.broadcast.lite.Activity_main_standard",
+    "com.byted.broadcast.lite.Activity_main_singleTask1",
+    "com.byted.broadcast.lite.Activity_main_singleTask2",
+    "com.byted.broadcast.lite.Activity_main_singleTop1",
+    "com.huawei.hms.support.api.push.TransActivity",
+    "com.vivo.push.sdk.LinkProxyClientActivity",
+    "com.xiaomi.mipush.sdk.NotificationClickedActivity",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait2",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait3",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait4",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait5",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait6",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait7",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait8",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait9",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait10",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait11",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait12",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait13",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait14",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait15",
+    "com.bytedance.android.dy.sdk.stub.VideoStubActivity$Activity_Portrait16"
+  ],
+  "services": [
+    "com.huawei.android.hms.tpns.HWHmsMessageService",
+    "com.vivo.push.sdk.service.CommandClientService",
+    "com.xiaomi.push.service.XMPushService",
+    "com.xiaomi.push.service.XMJobService",
+    "com.xiaomi.mipush.sdk.PushMessageHandler",
+    "com.xiaomi.mipush.sdk.MessageHandleService",
+    "com.tencent.android.tpush.honor.HonorMessageService",
+    "com.ss.android.socialbase.downloader.downloader.IndependentProcessDownloadService",
+    "com.ss.android.socialbase.downloader.notification.DownloadNotificationService",
+    "com.ss.android.socialbase.downloader.downloader.DownloadService",
+    "com.ss.android.socialbase.downloader.impls.DownloadHandleService",
+    "com.ss.android.socialbase.downloader.downloader.SqlDownloadCacheService",
+    "com.huawei.agconnect.core.ServiceDiscovery",
+    "com.huawei.hms.support.api.push.service.HmsMsgService",
+    "com.tencent.tmgp.dfm.OBBDownloaderService",
+    "com.ihoc.mgpa.gradish.GRService",
+    "com.ihoc.mgpa.download.BgDownloadService",
+    "com.tencent.estvbc.services.PluginService",
+    "com.heytap.msp.push.service.CompatibleDataMessageCallbackService",
+    "com.heytap.msp.push.service.DataMessageCallbackService",
+    "com.tencent.android.tpush.service.XGVipPushService",
+    "com.tencent.android.tpush.rpc.XGRemoteService",
+    "com.tencent.tpns.mqttchannel.services.MqttService"
+  ],
+  "receivers": [
+    "com.epicgames.ue4.LocalNotificationReceiver",
+    "com.xiaomi.push.service.receivers.PingReceiver",
+    "com.epicgames.ue4.MulticastBroadcastReceiver",
+    "com.tencent.android.mipush.XMPushMessageReceiver",
+    "com.tencent.android.vivopush.VivoPushMessageReceiver",
+    "com.tencent.android.tpush.XGPushReceiver",
+    "com.itop.gcloud.msdk.pixui.xg.push.MSDKXGPushReceiver",
+    "com.huawei.hms.support.api.push.PushMsgReceiver",
+    "com.huawei.hms.support.api.push.PushReceiver",
+    "com.tencent.tmgp.dfm.AlarmReceiver"
+  ],
+  "providers": [
+    "com.gcore.abase.GCFileProvider",
+    "com.itop.gcloud.msdk.pixui.qq.QQFileProvider",
+    "com.itop.gcloud.msdk.pixui.system.SystemFileProvider",
+    "com.tencent.android.tpush.XGPushProvider",
+    "com.itop.gcloud.msdk.pixui.wechat.WeChatFileProvider",
+    "com.mediatek.magt.sdkbridge.MagtSdkInitProvider",
+    "com.volcengine.zeus.servermanager.MainServerManager",
+    "com.volcengine.zeus.provider.MainProcessProviderProxy",
+    "com.volcengine.zeus.FileProvider",
+    "com.huawei.hms.support.api.push.PushProvider",
+    "com.taptap.sdk.kit.internal.TapTapKitInitProvider",
+    "com.bytedance.android.openliveplugin.process.server.LiveServerManager",
+    "androidx.lifecycle.ProcessLifecycleOwnerInitializer",
+    "com.byted.live.lite.ServerManager_bytelive",
+    "com.huawei.hms.aaid.InitProvider",
+    "com.taptap.sdk.themis.lite.ThemisProvider",
+    "com.tencent.gcloud.ApolloProvider",
+    "com.huawei.agconnect.core.provider.AGConnectInitializeProvider",
+    "com.byted.live.lite.ServerManager_push",
+    "com.byted.broadcast.lite.ServerManager_bytelive",
+    "com.tencent.android.tpush.SettingsContentProvider",
+    "com.tencent.android.tpush.XGVipPushKAProvider",
+    "com.tencent.tpns.baseapi.base.SettingsContentProvider",
+    "com.byted.broadcast.lite.ServerManager_push",
+    "com.byted.broadcast.lite.ServerManager_downloader"
+  ],
+  "main_activity": "com.epicgames.ue4.SplashActivity",
+  "main_activities": "{'com.epicgames.ue4.SplashActivity'}",
+  "certificates": [
+    "<asn1crypto.x509.Certificate 126075118359392 b'0\\x82\\x03\\x1b0\\x82\\x02\\xd8\\xa0\\x03\\x02\\x01\\x02\\x02\\x04\\x02T\\'\\xc90\\x0b\\x06\\x07*\\x86H\\xce8\\x04\\x03\\x05\\x000^1\\x0b0\\t\\x06\\x03U\\x04\\x06\\x13\\x02CN1\\x120\\x10\\"
+  ]
+}

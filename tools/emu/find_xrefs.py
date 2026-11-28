@@ -15,6 +15,7 @@ find_xrefs.py — 从字符串字面量地址反查引用它的代码位置（AA
 import argparse
 import struct
 import sys
+import json
 
 from elftools.elf.elffile import ELFFile
 
@@ -152,10 +153,8 @@ def main():
         json.dump(all_res, open(args.out, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
         print("[*] 写入", args.out)
     else:
-        import json
         print(json.dumps(all_res, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
-    import json
     main()

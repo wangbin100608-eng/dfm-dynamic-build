@@ -3,7 +3,11 @@
 > 面向《三角洲行动》手游**国服官服**（`com.tencent.tmgp.dfm`）的高效动态逆向与重编译研究工具链。
 > 目标 APK 来源：腾讯官网 `df.qq.com` 移动端页面给出的应用宝官方分发直链，当前抓取版本 `1.201.1035.13`（约 1.3GB）。
 >
-> **版本说明**：仓库同时保留一份历史深度分析报告（`reports/REPORT.md`），对应官服版本 `1.201.37119.49`（versionCode 2362，1.51GiB，SHA256 `1ce71a21…f44a`）。该报告已定位 UE4 字符串 XOR 0x10 混淆、protobuf 消息/字段、哈弗币优惠券接口（`/api/v2/%s/users/%s/coupons/%s`）等关键结论；当前抓取版本用于复现与交叉验证。
+> **版本说明**：仓库保留两份官服版本的深度分析：
+> - `1.201.37119.49`（versionCode 2362，1.51GiB，SHA256 `1ce71a21…f44a`）：`reports/REPORT.md` + **本次完整反编译实证** `reports/DECOMPILE_RESULTS.md`（jadx 8567 Java / apktool 14749 smali，ROM 动态运行验证）。已定位 UE4 字符串、protobuf 消息、哈弗币优惠券接口、**ACE 反作弊 ROT5 字符串混淆**。
+> - `1.201.1035.13`：当前抓取版本，用于复现与交叉验证。
+>
+> 两个版本的关键差异：**XOR 0x10 混淆在 1.201.37119.49 实测成立（`pb.CSMallBuyReq`/`buy_price`/`bullet_gid` 为 XOR 编码），但在 1.201.1035.13 的 so 中为明文**（见 `reports/DYNAMIC_DECOMPILE_RESULTS.md`、`reports/xor-harvest-1_201_37119_49.txt`；旧版报告 `HAVAL_PURCHASE_API.md` §0 针对 1.201.1035.13）。分析时务必先确认版本再套用结论。
 
 ---
 
@@ -60,10 +64,19 @@ dfm-dynamic-build/
 │   ├── probe_gateway.py       protobuf CS 消息构造/发送/解码
 │   ├── find_descriptor.js     Frida 导出运行期 protobuf 字段号
 │   ├── dump_traffic.js        Frida dump 网关收发二进制
+│   ├── dfm_hook.js            动态 hook 脚本：TssSdk/TouchListenerProxy/UE4/MidasPay（本次新增）
 │   ├── field_map.example.json 字段号/帧格式/网关配置模板
 │   ├── capture.example.json   会话/签名注入模板
 │   └── README.md              探针使用说明
+├── decompiled_samples/        关键 Java 反编译样本（见 §9）
+│   ├── README.md              ROT5 解密方法与结论索引
+│   └── com/tencent/{tp,tersafe2}/*.java   TssSdk / l / TouchListenerProxy / TP2Sdk
 ├── reports/
+│   ├── DYNAMIC_DECOMPILE_RESULTS.md  Unicorn 指令级动态反编译实测（本次新增）
+│   ├── xor-harvest-1_201_37119_49.txt  443 条 XOR 0x10 编码字符串（本次新增）
+│   ├── xrefs-csmallbuy.json        pb.CSMallBuyReq xref 扫描结果（本次新增）
+│   ├── DECOMPILE_RESULTS.md   1.201.37119.49 完整反编译 + 动态运行实证
+│   ├── apk_metadata_1_201_37119_49.json   该版本完整元数据（90 so / 67 assets）
 │   ├── apk_meta.txt           当前版本 APK 元信息（自动生成）
 │   ├── signature_cert.txt     当前版本签名证书（自动生成）
 │   ├── manifest.xml           反编译 Manifest（自动生成）
@@ -255,10 +268,122 @@ bash scripts/09_rebuild.sh
 - 签名/加密在 native 层（dex 字符串池出现 `-->get md5 form native`），故 hook 策略为**直接调 native 函数现算**，而非复刻算法。
 - `05_hook_midas.js` 的占位符已按实证类名回填，开箱可用。
 
-## 8. 研究边界
+## 9. 完整反编译实证（官服 1.201.37119.49，本次新增）
+
+对 `REPORT.md` 使用的同一官服样本（`com.tencent.tmgp.dfm` v1.201.37119.49，1,625,586,573 字节，SHA256 `1ce71a21…f44a`）完成了一次完整反编译与动态运行验证。完整报告见 [`reports/DECOMPILE_RESULTS.md`](reports/DECOMPILE_RESULTS.md)。
+
+### 9.1 反编译产出
+
+| 工具 | 产出 | 规模 |
+|---|---|---|
+| jadx 1.5.7 | Java 源码 | 8,567 个 `.java`（业务类大量混淆为单字母包 `a3/s3/y0/d2…`） |
+| apktool 2.11 | smali + 解码资源 | 14,749 个 `.smali` |
+| 静态元数据 | [`reports/apk_metadata_1_201_37119_49.json`](reports/apk_metadata_1_201_37119_49.json) | 37 权限 / 98 Activity / 23 Service / 25 Provider；**90 个 arm64 so** / 67 assets |
+
+包结构关键点：UE4 引擎（Application `com.epicgames.ue4.GameApplication`，主 Activity `SplashActivity` → `GameActivity`），`libUE4.so` **561.6 MB**，伪装成 png 的 `assets/main.obb.png` **1.39 GB**，入口命令行 `../../../DeltaForce/DeltaForce.uproject`。
+
+### 9.2 ACE 反作弊：ROT5 字符串混淆破解
+
+这是本次反编译最有价值的新增发现。`com.tencent.tp.l.a()` 是 **ROT5 凯撒移位（每个字母 +5）**，用于混淆反作弊 SDK 的内部命令。源码样本见 [`decompiled_samples/`](decompiled_samples/)。
+
+```python
+def rot5(s):  # l.a()：明文 +5 = 密文
+    out = ''
+    for c in s:
+        if 'a' <= c <= 'z': out += chr((ord(c) - 97 + 5) % 26 + 97)
+        elif 'A' <= c <= 'Z': out += chr((ord(c) - 65 + 5) % 26 + 65)
+        else: out += c
+    return out
+```
+
+解密出的内部命令（密文 → 明文）：
+
+| 密文 | 明文 | 用途 |
+|---|---|---|
+| `bzo_mzkjmo_yvov` | `get_report_data` | 取反作弊上报数据 |
+| `dgx_jkzi_kdkz` / `dgx_mzxq_kdkz` | `ilc_open_pipe` / `ilc_recv_pipe` | 本地管道通信 |
+| `VyyVijOjpxcZqzio:dy=…` | `AddAnoTouchEvent:id=…` | **触摸行为采集** |
+| `mzlpznoKzmhdnndjin` | `requestPermissions` | 权限请求 |
+
+- `TssSdk.java` 静态块 `System.loadLibrary("tersafe")`；`TSS_SDK_VERSION = 8.0.46(2020/11/10)`。
+- `GameActivity.java:652` 反射加载 `tersafe` 插件。
+- `TouchListenerProxy.java:47` 把 `pointerId / downTime / eventTime / touchMinor / touchMajor` 经 `TssSdk.ioctl(AddAnoTouchEvent…)` 送入 native —— 反作弊的**行为特征采集**。
+- `libtersafe.so` native 导出与字符串确认 ACE + MVM 虚拟机保护：`mvm_checkenv / mvm_monitor / mvm_bk_proc`、`inline_hook_opcode_dismatch`、`mt2_no_root`、`is_root=%d`、`emulator_name=`、`ptrace`、`inotify_init`。
+
+这与 §7 的协议层结论互补：§7 定位的是 UE4 网关/protobuf 消息，本节定位的是**客户端侧的 ACE 反作弊实现**。
+
+### 9.3 模拟器动态运行验证
+
+在 redroid 11（x86_64 + arm64 NDK 转译）上实际安装并启动了该 1.6 GB 官服包：
+
+- `adb install` 成功；启动链 `SplashActivity → PermissionActivity → GameActivity`。
+- `/proc/<pid>/maps` 实证：`libtersafe.so` 在**权限页阶段、UE4 主逻辑启动前**就已加载进进程 —— 反作弊初始化早于游戏逻辑。
+- 561 MB `libUE4.so` 在 x86_64 转译环境进入 `GameActivity` 后触发 ANR/崩溃（系统批量 dump 栈后杀进程）。这是模拟器/NDK 转译的性能与兼容性上限，非反编译失败；Java 层与反作弊初始化已完整跑通。
+- 结论重申 §7：网关地址、cmd_id/seq_id、TSS 签名、会话密钥依赖真实运行环境，**动态参数导出仍需在已 root 真机完成**。
+
+### 9.4 本次实跑命令（可复现）
+
+```bash
+# 静态元数据（无需设备）
+python3 reports/../scripts/01_meta.sh          # 或直接用 apk_metadata_1_201_37119_49.json
+jadx -d build/jadx -j 4 dfm-official-1.201.37119.49.apk   # → 8567 java
+java -jar apktool.jar d -f dfm-official-1.201.37119.49.apk -o build/apktool  # → 14749 smali
+
+# ROT5 解密全部混淆命令（脚本见 decompiled_samples/README.md）
+grep -rhoE 'l\.a\("[^"]+"\)' build/jadx/sources/com/tencent/{tp,tersafe2} | sort -u
+
+# 动态运行（redroid，arm64 转译）
+adb install -r dfm-official-1.201.37119.49.apk
+adb shell am start -n com.tencent.tmgp.dfm/com.epicgames.ue4.SplashActivity
+adb shell "cat /proc/$(pidof com.tencent.tmgp.dfm)/maps | grep tersafe"
+```
+
+---
+
+## 10. 动态反编译实测（Unicorn 指令级，本次新增）
+
+对 561 MB 的 `libUE4.so` 做了两条动态反编译路径的实测，完整报告见 [`reports/DYNAMIC_DECOMPILE_RESULTS.md`](reports/DYNAMIC_DECOMPILE_RESULTS.md)。
+
+### 10.1 成功路径：Unicorn 无设备动态执行
+
+不依赖 Android / root / Frida，把 ARM64 机器码加载进模拟 CPU 逐指令执行：
+
+```bash
+python3 tools/emu/emu_native_trace.py \
+  --so libUE4.so --offset 0xab12f98 --count 12 --base 0x100000000
+```
+
+实测跑通 `_Znwm`（operator new thunk）：ELF PT_LOAD 段正确映射、跨越 thunk 跳转 + 栈操作 + BL 调用全程受控，证明可对 so 内任意真实函数入口做指令级动态分析。
+
+**核心产出 —— 推翻旧结论的版本差异**：用 `xor_string_harvest.py --verify` 对 v1.201.37119.49 做确定性计数，结果与旧版报告（v1.201.1035.13，355MB so）**相反**：
+
+| 词 | XOR 0x10 编码 | 明文 | 本版本判定 |
+|---|---|---|---|
+| `buy_price` | 3 | 0 | XOR 编码 |
+| `CSMallBuyReq` | 1 | 0 | XOR 编码 |
+| `bullet_gid` | 1 | 0 | XOR 编码 |
+| `cmd_id` | 0 | 2 | 明文 |
+
+`pb.CSMallBuyReq` 明文 0 处、XOR 编码 1 处 @ `0x1a24a32`（hex `53435d717c7c526569427561`），解码上下文是完整 protobuf 消息名列表。全量挖矿得到 **443 条** XOR 字符串，落盘 [`reports/xor-harvest-1_201_37119_49.txt`](reports/xor-harvest-1_201_37119_49.txt)，含 `UDFMGameTss::EnableTPConnector_ES`、`OnRecvTssSignature`、`CSMallBuyPlayerDesignWeaponReq` 等。
+
+> **结论**：XOR 0x10 混淆在 1.201.37119.49 成立、在 1.201.1035.13 不成立；两个版本的报告各自正确，但字段/消息结论**不可跨版本套用**。
+
+### 10.2 受阻路径：模拟器运行时插桩
+
+- frida-server 16.7.19 / 17.28.0 在 redroid（NDK 转译）上 `attach()` 必崩（`TransportError: connection is closed`）。
+- x86_64 Gadget 静态注入 `GameApplication.onCreate` 重打包 1.6 GB APK，签名验签通过，但启动崩溃 `dlopen failed: library "libtprt.so" not found` —— ACE 加固包对重打包敏感。
+- 已恢复官方原版 APK。动态参数（网关 IP / cmd_id / TSS 签名 / 会话密钥）仍需**已 root 真机**按 `tools/probe/README.md` 导出。准备好的 hook 脚本见 [`tools/probe/dfm_hook.js`](tools/probe/dfm_hook.js)。
+
+### 10.3 工具修复
+
+修复 `tools/emu/find_xrefs.py` 的 `UnboundLocalError`（`main()` 内重复 `import json` 遮蔽全局导入）；全部 emu 工具 `py_compile` 通过。`pb.CSMallBuyReq` 的 xref 结果见 [`reports/xrefs-csmallbuy.json`](reports/xrefs-csmallbuy.json)（空——该 so 用 LDR literal / 间接表而非标准 ADRP+ADD）。
+
+---
+
+## 11. 研究边界
 
 本仓库仅用于**个人安全研究与逆向工程学习**。请勿将产物用于任何违反游戏服务条款、破坏线上服务或侵害他人权益的行为。所有接口调用应控制在研究必要的最小化范围内。
 
 ---
 
-*生成时间：2026-11-24 · 目标版本：三角洲行动国服官服 1.201.1035.13 · 编译服务器：Ubuntu 26.10 (Vultr)*
+*生成时间：2026-11-24 · 最后更新：2026-11-28（新增 §9 反编译实证、§10 Unicorn 动态反编译、XOR 挖矿、工具修复）· 目标版本：国服官服 1.201.1035.13 / 1.201.37119.49 · 编译服务器：Ubuntu 26.10 (Vultr)*
