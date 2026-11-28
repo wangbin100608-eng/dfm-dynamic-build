@@ -1,0 +1,21 @@
+{
+  "_dryrun": true,
+  "_WARNING": "DRYRUN 占位样例：所有值为占位符，仅用于 validate_capture.py 自检 exit=0 分支。严禁用于真实发包。真实发包必须使用真机抓包/Frida 注入的真实值。",
+  "_comment": "字段全填但值为占位；signature 走 frida_rpc 现算，故不落静态签名字节。",
+  "cmd_id": "DRYRUN_CMD_ID_PLACEHOLDER",
+  "seq_id": "DRYRUN_SEQ_ID_PLACEHOLDER",
+  "signature_hex": null,
+  "signature_hex_source": "frida_rpc",
+  "seed_hex": "DRYRUN_SEED_PLACEHOLDER",
+  "session_key_hex": "DRYRUN_SESSION_KEY_PLACEHOLDER",
+  "device_fingerprint": "DRYRUN_FINGERPRINT_PLACEHOLDER",
+  "uin": "DRYRUN_UIN_PLACEHOLDER",
+  "cmd_id_source": "capture_runtime",
+  "seq_id_source": "capture_runtime",
+  "seed_hex_source": "capture_runtime",
+  "session_key_hex_source": "capture_runtime",
+  "device_fingerprint_source": "capture_runtime",
+  "uin_source": "capture_runtime",
+  "_captured_from": "DRYRUN_FIXTURE",
+  "_captured_at": "DRYRUN_FIXTURE"
+}
