@@ -129,3 +129,16 @@ pb.CSMallGetUnlockExchangeIdReq  pb.CSMallGetMysteryShopItemsRes  pb...
 2. **版本差异是关键**：XOR 混淆在 1.201.37119.49 成立、在 1.201.1035.13 不成立；任何字段/消息结论必须绑定版本。
 3. **模拟器插桩不可行**：redroid NDK 转译 + ACE 加固双重阻断，动态参数（网关 IP、cmd_id、TSS 签名、会话密钥）仍需**已 root 真机**按 `tools/probe/README.md` 流程导出。
 4. **修复了仓库工具 bug**：`find_xrefs.py` 的 json UnboundLocalError，已就地修复。
+
+---
+
+## 附录 A：纯 CPU 路线深挖（2026-11-28 续）
+
+放弃 Waydroid 后回到纯 CPU 指令级路线，本轮增量：
+
+1. **扩展 `find_xrefs.py`**：新增 LDR literal / pointer-pool 寻址支持（`decode_ldr_literal` + `find_ldr_literal_refs`），`py_compile` 通过。对 `pb.CSMallBuyReq`(0x1a24a2f)、XOR 编码的 `goods_id`(0x167c056) 扫描，标准 ADRP+ADD 与 LDR-literal 均无命中——该 so 的字符串通过表索引/相对寻址引用，非直接 xref。xref 纯编码路径到此为止。
+2. **descriptor blob 全 so 扫描**（`emu_descriptor.py --scan`）：确认无序列化 `FileDescriptorProto` blob，字段号静态不可得（`reports/descriptor-scan.json`）。
+3. **XOR 解码批量归类**：443 条 XOR 0x10 字符串，提取出 **25 个 `pb.*` protobuf 消息**（`reports/xor-protobuf-messages.txt`）。其中 `pb.CSTSSQueryPlayerCreditScoreReq/Res`、`pb.CSTSSPlayerQueryScnLimitReq/Res`、`pb.CSTssAntiDataTransferNtf`、`pb.CSTssFaceVerifyStatusChangeNtf` 等是明文静态检索拿不到的 ACE 反作弊消息，扩充了协议面认知。购买链路仍以 `pb.CSMallBuyReq/Res`、`CSMallBuyPlayerDesignWeaponReq/Res` 为主。
+4. **xref 结果落盘**：`reports/xref-csmallbuy-v2.json`、`reports/xref-fields.json`、`reports/xref-goodsid-xor.json`（均为空命中，附原因）。
+
+结论：纯 CPU 路线在"XOR 字符串解码 + protobuf 消息枚举"上产出确定增量；字段号/网关/签名仍需真机。

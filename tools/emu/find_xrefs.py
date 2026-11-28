@@ -48,6 +48,63 @@ def decode_add_imm(insn):
     return rd, rn, imm
 
 
+def decode_ldr_literal(insn, pc):
+    """解码 LDR Xt, label（literal 加载），返回 (Rt, target_va)。
+
+    编码: 01 0 0 0 0 0 imm19 Rt  → 0x58000000 mask 0x7F000000
+    V=0,opc=00 = 64-bit LDR literal；target = pc + sign_extend(imm19<<2)
+    """
+    if (insn & 0x7F000000) != 0x58000000:
+        return None
+    rt = insn & 0x1F
+    imm19 = (insn >> 5) & 0x7FFFF
+    imm = imm19 << 2
+    if imm & (1 << 21):
+        imm -= (1 << 22)
+    target = (pc + imm) & 0xFFFFFFFFFFFFFFFF
+    return rt, target
+
+
+def find_ldr_literal_refs(data, segs, target_va):
+    """找所有 LDR literal 直接从 GOT/pointer slot 读到 target_va 的引用。
+
+    两遍法：先扫所有数据区找到值 == target_va 的 8 字节 slot（pointer pool），
+    再在 .text 里找 LDR literal 读取该 slot 的地址。
+    """
+    results = []
+    # 第一遍：定位所有内容等于 target_va 的 8 字节槽（文件全局扫描）
+    slots = []
+    tgt = struct.pack("<Q", target_va)
+    pos = data.find(tgt)
+    while pos >= 0 and len(slots) < 64:
+        if pos % 8 == 0:
+            slots.append(pos)
+        pos = data.find(tgt, pos + 1)
+    if not slots:
+        return results
+    # 把 slot 文件偏移映射到 vaddr
+    slot_vas = {}
+    for s in segs:
+        off, va, sz = s["offset"], s["vaddr"], s["filesz"]
+        for sp in slots:
+            if off <= sp < off + sz - 8 and sp not in slot_vas:
+                slot_vas[sp] = va + (sp - off)
+    if not slot_vas:
+        return results
+    target_slot_vas = set(slot_vas.values())
+    # 第二遍：扫 .text 找 LDR literal 目标落在这些 slot
+    for off, va, insn in iter_text(data, segs):
+        lr = decode_ldr_literal(insn, va)
+        if lr and lr[1] in target_slot_vas:
+            results.append({
+                "ldr_off": off, "ldr_va": va,
+                "slot_va": lr[1], "slot_off": slot_vas.get(lr[1]),
+                "reg": lr[0], "target_va": target_va,
+                "kind": "LDR-literal",
+            })
+    return results
+
+
 def iter_text(data, segs):
     """产出 (file_offset, vaddr, insn) 遍历所有可执行 PT_LOAD"""
     for s in segs:
@@ -141,13 +198,19 @@ def main():
     for label, tva in targets.items():
         print("[*] xref: %s (va=0x%x)" % (label, tva))
         res = find_xrefs(data, segs, tva, window=args.window)
+        # 补充 LDR literal / pointer-pool 寻址
+        res += find_ldr_literal_refs(data, segs, tva)
         all_res[label] = res
         if res:
             for r in res[:8]:
-                print("    ADRP@0x%x  ADD@0x%x (reg x%d) → 候选代码入口" % (
-                    r["adrp_off"], r["add_off"], r["reg"]))
+                if r.get("kind") == "LDR-literal":
+                    print("    LDR@0x%x (slot@0x%x, reg x%d) → 候选代码入口" % (
+                        r["ldr_off"], r["slot_va"], r["reg"]))
+                else:
+                    print("    ADRP@0x%x  ADD@0x%x (reg x%d) → 候选代码入口" % (
+                        r["adrp_off"], r["add_off"], r["reg"]))
         else:
-            print("    未找到 ADRP+ADD xref（可能被优化成 LDR literal 或其它寻址）")
+            print("    未找到 ADRP+ADD / LDR-literal xref")
 
     if args.out:
         json.dump(all_res, open(args.out, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
