@@ -55,7 +55,10 @@ def main() -> int:
         p_plain = data.find(b)
         p_xor = data.find(xe)
         insns = []
-        for i in md.disasm(data[off - 16:off + 48], off - 16):
+        # ARM64 指令必须 4 字节对齐；off 本身多为字符串字节（非入口），
+        # 对齐到 off-16 向下取整，避免 capstone 首指令错对齐产物（OBS-2）
+        start = (off - 16) & ~3
+        for i in md.disasm(data[start:off + 48], start):
             insns.append({"addr": hex(i.address), "mn": i.mnemonic, "op": i.op_str})
         out["symbols"].append({
             "name": name,

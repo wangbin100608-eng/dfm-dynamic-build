@@ -4,7 +4,7 @@
 harvest_pb_messages.py — 阶段2：从 libUE4.so 全量挖掘 protobuf 消息名与购买/货币/价格字段。
 
 方法（全部离线，不发包、不改目标）：
-  1) mmap 全文件，正则提取 `pb.<Message>` / `pb.<Message>.<field>` 形式的 ASCII NUL 终止字符串，
+  1) 整文件读入内存，正则提取 `pb.<Message>` / `pb.<Message>.<field>` 形式的 ASCII NUL 终止字符串，
      记录精确文件偏移（= so 内字符串地址，因首段 vaddr≈offset）。
   2) 关键词过滤购买/货币/价格/交易/弹药/订单相关消息；保留全部 pb.CS* 作为字典。
   3) 在每个命中消息名的 ±RADIUS 字节窗口内提取 snake_case 标识符（字段名候选），
@@ -109,7 +109,7 @@ def main() -> int:
         "_meta": {
             "so": a.so,
             "size": n,
-            "method": "mmap ASCII regex pb.<Name>[.<field>] + XOR-0x10 cross-check; field candidates from +/-0x%x window" % a.radius,
+            "method": "full-read ASCII regex pb.<Name>[.<field>] + XOR-0x10 cross-check; field candidates from +/-0x%x window" % a.radius,
             "note": "本脚本只给字符串存在性与偏移；字段号仍须运行时 DescriptorPool 导出。",
         },
         "messages": messages,
